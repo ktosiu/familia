@@ -21,9 +21,9 @@ exports.createPersonAPI = function(req, res){
 	var person = new Person(req.body);
 	person.save(function(err, person){
 		if(!err)
-		res.status(201).json({'msg' : 'Person Added !'});
-	else
-		res.json(err);
+			res.status(201).json({'msg' : 'Person Added !'});
+		else
+			res.json(err);
 	});
 }
 
