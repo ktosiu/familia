@@ -1,6 +1,6 @@
 ## Person
-first_name : String,
-last_name : String,
+full_name : String,
+gender: String,
 date_of_birth : Date,
 anniversaries : [{
 	type : ["death", "wedding", "feast"],
