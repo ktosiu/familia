@@ -10,7 +10,9 @@ exports.personById = function(req, res){
 }
 
 exports.listPersonsUI = function(req, res){
-	Person.find({}, function(err, person_list){
+	Person.find({})
+	.populate({ path: 'related_to_person', select: 'full_name _id'})
+	.exec(function(err, person_list){
 		if (err || person_list==null || person_list==undefined)
 			res.status(401).json(err);
 		else{
@@ -34,7 +36,9 @@ exports.createPersonAPI = function(req, res){
 }
 
 exports.listPersonsAPI = function(req, res){
-	Person.find({}, function(err, person_list){
+	Person.find({})
+	.populate({ path: 'related_to_person', select: 'full_name _id'})
+	.exec(function(err, person_list){
 		if (err || person_list==null || person_list==undefined)
 			res.status(401).json(err);
 		else{
