@@ -8,7 +8,7 @@ module.exports = function(app){
 	.post(personsController.create);
 	
 	app.route(domainRoot + '/persons/list') 
-	.get(personsController.list);
+	.get(personsController.listPersonsUI);
 
 	app.route(domainRoot + '/persons/add')
 	.get(personsController.addPersonUI); // add.ejs

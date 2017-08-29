@@ -9,8 +9,14 @@ exports.personById = function(req, res){
 	res.render('persons/views/home');
 }
 
-exports.list = function(req, res){
-	res.render('persons/views/list');
+exports.listPersonsUI = function(req, res){
+	Person.find({}, function(err, person_list){
+		if (err || person_list==null || person_list==undefined)
+			res.status(401).json(err);
+		else{
+			res.render('persons/views/list-people', {person_list: person_list})
+		}
+	});
 }
 
 exports.addPersonUI = function(req, res){

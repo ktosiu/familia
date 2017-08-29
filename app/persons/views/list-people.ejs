@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><%= persons.title %></title>
+	<meta name="description" content="<%= persons.metaDescription %>">
+	<meta name="keywords" content="<%=  persons.metaKeywords %>">
+	<meta name="author" content="guyswhocode">
+	<% include ../../home/views/partials/styles.ejs %>
+	<link rel="stylesheet" href="/persons/public/css/persons.css">
+</head>
+<body>
+	<div class="ui container">
+		<h1><%= persons.title %></h1>
+		<table class="ui table">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Gender</th>
+					<th>Phone</th>
+					<th>Dead</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% if(person_list.length){ %>
+				<% person_list.forEach(function(person){ %>
+				<tr>
+					<td><%= person.full_name %></td>
+					<td><%= person.gender %></td>
+					<td><%= person.phone %></td>
+					<td><%= person.is_dead %></td>
+				</tr>
+				<% });}  %>
+			</tbody>
+		</table>
+	</div>
+	<% include ../../home/views/partials/footer.ejs %>
+	<% include ../../home/views/partials/scripts.ejs %>	
+</body>
+</html>
