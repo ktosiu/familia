@@ -3,6 +3,7 @@ Schema = mongoose.Schema;
 
 var personSchema = new Schema({
 	full_name: String,
+	nick_name: String,
 	gender: String,
 	date_of_birth: Date,
 	anniversaries: [{
