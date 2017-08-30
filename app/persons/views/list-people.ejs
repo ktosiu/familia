@@ -25,9 +25,9 @@
 				<% if(person_list.length){ %>
 				<% person_list.forEach(function(person){ %>
 				<tr>
-					<td><%= person.full_name %></td>
+					<td><a href="/persons/<%= person._id %>"><%= person.full_name %></a></td>
 					<td><%= person.gender %></td>
-					<td><% if(person.related_to_person){ %><%= person.related_to_person.full_name %>'s <%= person.relation %><% } %></td>
+					<td><% if(person.related_to_person){ %><a href="/persons/<%= person.related_to_person._id %>"><%= person.related_to_person.full_name %></a>'s <%= person.relation %><% } %></td>
 					<td><%= person.phone %></td>
 					<td><%= person.is_dead %></td>
 				</tr>
