@@ -1,7 +1,7 @@
 var mongoose = require('mongoose'),
 Schema = mongoose.Schema;
 
-var personSchema = new Schema({
+var peopleSchema = new Schema({
 	full_name: String,
 	nick_name: String,
 	gender: String,
@@ -11,10 +11,10 @@ var personSchema = new Schema({
 		day: Date
 	}],
 	relation: String,
-	related_to_person: { type: Schema.ObjectId, ref: 'person'},
+	related_to_person: { type: Schema.ObjectId, ref: 'people'},
 	phone: String,
 	avatar: String,
 	is_dead: Boolean
 });
 
-mongoose.model('person', personSchema);
+mongoose.model('people', peopleSchema);

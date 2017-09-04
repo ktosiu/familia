@@ -1,13 +1,13 @@
-var personsController = require('../controllers/persons.server.controller.js');
+var peopleController = require('../controllers/people.server.controller.js');
 var domainRoot = '/api';
 module.exports = function(app){
 
-	app.route(domainRoot + '/persons')
-	.get(personsController.listPersonsAPI) // home.ejs
-	.post(personsController.createPersonAPI);
+	app.route(domainRoot + '/people')
+	.get(peopleController.listPeopleAPI) // home.ejs
+	.post(peopleController.createPersonAPI);
 
-	app.route(domainRoot + '/persons/list')
-	.get(personsController.fetchPersonsAPI);
+	app.route(domainRoot + '/people/list')
+	.get(peopleController.fetchPeopleAPI);
 
-	app.param('person_id', personsController.personById);
+	app.param('people_id', peopleController.personById);
 }

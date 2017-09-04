@@ -1,13 +1,13 @@
 {
-	"name" : "persons",
-	"title" : "Persons",
+	"name" : "people",
+	"title" : "People",
 	"tagline" : "",
 	"description" : "",
-	"metaKeywords" : "persons",
+	"metaKeywords" : "people",
 	"metaDescription" : "",
 	"icon" : "",
 	"slider" :"",
-	"url": "/persons",
-	"routes": ["persons.server.api.route.js","persons.server.ui.route.js"],
-	"models": ["persons.server.model.js"]
+	"url": "/people",
+	"routes": ["people.server.api.route.js","people.server.ui.route.js"],
+	"models": ["people.server.model.js"]
 }
