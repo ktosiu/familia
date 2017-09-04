@@ -8,10 +8,10 @@ module.exports = function(app){
 	.post(peopleController.create);
 	
 	app.route(domainRoot + '/people/list') 
-	.get(peopleController.listpeopleUI);
+	.get(peopleController.listPeopleUI);
 
 	app.route(domainRoot + '/people/add')
-	.get(peopleController.addPersonUI); // add.ejs
+	.get(peopleController.addPeopleUI); // add.ejs
 
 	app.route(domainRoot + '/people/:people_id')
 	.get(peopleController.view) // view.ejs
@@ -24,5 +24,5 @@ module.exports = function(app){
 	app.route(domainRoot + '/people/:people_id/delete')
 	.get(peopleController.delete); // delete.ejs
 
-	app.param('people_id', peopleController.personById);
+	app.param('people_id', peopleController.peopleById);
 }

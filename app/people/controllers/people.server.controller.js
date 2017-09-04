@@ -1,58 +1,58 @@
-var Person = require('mongoose').model('person');
-var personValidation = require('../lib/persons.validation.js');
+var People = require('mongoose').model('people');
+var peopleValidation = require('../lib/people.validation.js');
 
 exports.home = function(req, res){
-	res.render('persons/views/home');
+	res.render('peoples/views/home');
 }
 
-exports.personById = function(req, res){
-	res.render('persons/views/home');
+exports.peopleById = function(req, res){
+	res.render('peoples/views/home');
 }
 
-exports.listPersonsUI = function(req, res){
-	Person.find({})
-	.populate({ path: 'related_to_person', select: 'full_name _id'})
-	.exec(function(err, person_list){
-		if (err || person_list==null || person_list==undefined)
+exports.listPeopleUI = function(req, res){
+	People.find({})
+	.populate({ path: 'related_to_people', select: 'full_name _id'})
+	.exec(function(err, people_list){
+		if (err || people_list==null || people_list==undefined)
 			res.status(401).json(err);
 		else{
-			res.render('persons/views/list-people', {person_list: person_list})
+			res.render('people/views/list-people', {people_list: people_list})
 		}
 	});
 }
 
-exports.addPersonUI = function(req, res){
-	res.render('persons/views/add_person');
+exports.addPeopleUI = function(req, res){
+	res.render('peoples/views/add_people');
 }
 
-exports.createPersonAPI = function(req, res){
-	var person = new Person(req.body);
-	person.save(function(err, person){
+exports.createPeopleAPI = function(req, res){
+	var people = new People(req.body);
+	people.save(function(err, people){
 		if(!err)
-			res.status(201).json({'msg' : 'Person Added !'});
+			res.status(201).json({'msg' : 'People Added !'});
 		else
 			res.json(err);
 	});
 }
 
-exports.listPersonsAPI = function(req, res){
-	Person.find({})
-	.populate({ path: 'related_to_person', select: 'full_name _id'})
-	.exec(function(err, person_list){
-		if (err || person_list==null || person_list==undefined)
+exports.listPeopleAPI = function(req, res){
+	People.find({})
+	.populate({ path: 'related_to_people', select: 'full_name _id'})
+	.exec(function(err, people_list){
+		if (err || people_list==null || people_list==undefined)
 			res.status(401).json(err);
 		else{
-			res.json(person_list)
+			res.json(people_list)
 		}
 	});
 }
 
-exports.fetchPersonsAPI = function(req, res){
-	Person.find({}, {_id: 1, full_name: 1}, function(err, person_list){
-		if (err || person_list==null || person_list==undefined)
+exports.fetchPeopleAPI = function(req, res){
+	People.find({}, {_id: 1, full_name: 1}, function(err, people_list){
+		if (err || people_list==null || people_list==undefined)
 			res.status(401).json(err);
 		else{
-			res.json({success:true, results: person_list})		
+			res.json({success:true, results: people_list})		
 		}
 	});
 }
@@ -62,7 +62,7 @@ exports.create = function(req, res){
 }
 
 exports.edit = function(req, res){
-	res.render('persons/views/edit');
+	res.render('peoples/views/edit');
 }
 
 exports.update = function(req, res){
@@ -70,11 +70,11 @@ exports.update = function(req, res){
 }
 
 exports.view = function(req, res){
-	res.render('persons/views/view');
+	res.render('peoples/views/view');
 }
 
 exports.delete = function(req, res){
-	res.render('persons/views/delete');
+	res.render('peoples/views/delete');
 }
 
 exports.remove = function(req, res){

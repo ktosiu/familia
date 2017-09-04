@@ -4,10 +4,10 @@ module.exports = function(app){
 
 	app.route(domainRoot + '/people')
 	.get(peopleController.listPeopleAPI) // home.ejs
-	.post(peopleController.createPersonAPI);
+	.post(peopleController.createPeopleAPI);
 
 	app.route(domainRoot + '/people/list')
 	.get(peopleController.fetchPeopleAPI);
 
-	app.param('people_id', peopleController.personById);
+	app.param('people_id', peopleController.peopleById);
 }
