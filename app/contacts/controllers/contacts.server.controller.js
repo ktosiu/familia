@@ -1,5 +1,5 @@
 var Contact = require('mongoose').model('contact');
-var contactValidation = require('../lib/contact.validation.js');
+var contactValidation = require('../lib/contacts.validation.js');
 
 exports.contactById = function(req, res){
 	res.render('contacts/views/home');
@@ -51,4 +51,8 @@ exports.fetchContactAPI = function(req, res){
 			res.json({success:true, results: contact_list})		
 		}
 	});
+}
+
+exports.home = function(req, res){
+	res.send("Home");
 }

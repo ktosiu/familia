@@ -2,25 +2,24 @@ var contactsController = require('../controllers/contacts.server.controller.js')
 	var domainRoot = '';
 	module.exports = function(app){
 	app.route(domainRoot + '/contacts')
-	.get(contactsController.home) // home.ejs
-	.post(contactsController.create);
+	.get(contactsController.home);
 	
 	app.route(domainRoot + '/contacts/list') 
-	.get(contactsController.list);
+	.get(contactsController.listContactUI);
 
 	app.route(domainRoot + '/contacts/add')
-	.get(contactsController.add); // add.ejs
+	.get(contactsController.addContactUI); // add.ejs
 
 	app.route(domainRoot + '/contacts/:contact_id')
-	.get(contactsController.view) // view.ejs
-	.put(contactsController.update)
-	.delete(contactsController.remove);
+	.get(contactsController.home) // view.ejs
+	.put(contactsController.home)
+	.delete(contactsController.home);
 
 	app.route(domainRoot + '/contacts/:contact_id/edit')
-	.get(contactsController.edit); // edit.ejs
+	.get(contactsController.home); // edit.ejs
 
 	app.route(domainRoot + '/contacts/:contact_id/delete')
-	.get(contactsController.delete); // delete.ejs
+	.get(contactsController.home); // delete.ejs
 
 	app.param('contact_id', contactsController.contactById);
 	}

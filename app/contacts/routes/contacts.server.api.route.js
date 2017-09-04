@@ -3,7 +3,7 @@ var contactsController = require('../controllers/contacts.server.controller.js')
 	module.exports = function(app){
 	app.route(domainRoot + '/contacts')
 	.get(contactsController.home) // home.ejs
-	.post(contactsController.create);
+	.post(contactsController.createContactAPI);
 
 	app.param('contact_id', contactsController.contactById);
 	}
