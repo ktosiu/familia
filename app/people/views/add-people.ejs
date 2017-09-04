@@ -9,9 +9,9 @@
 <body>
 	<div class="ui container">
 		<h1 class="ui header">Add Person</h1>
-		<div class="ui middle center aligned grid">
-			<div class="column" id="person_form" style="max-width: 400px;">
-				<form action="/api/persons" method="POST" class="ui form">
+		<div class="ui grid">
+			<div class="six wide column" id="person_form">
+				<form action="/api/people" method="POST" class="ui form">
 					<div class="three fields">
 						<div class="field">
 							<label for="full_name">Full Name</label>
@@ -98,7 +98,7 @@
 				value: '_id'
 			},
 			apiSettings: {
-				url: '/api/persons/list?first_name={query}',
+				url: '/api/people/list?first_name={query}',
 			},
 			localSearch: false
 		});

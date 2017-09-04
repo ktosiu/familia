@@ -22,8 +22,8 @@
 				</tr>
 			</thead>
 			<tbody>
-				<% if(person_list.length){ %>
-				<% person_list.forEach(function(person){ %>
+				<% if(people_list.length){ %>
+				<% people_list.forEach(function(person){ %>
 				<tr>
 					<td><a href="/persons/<%= person._id %>"><%= person.full_name %></a></td>
 					<td><%= person.gender %></td>

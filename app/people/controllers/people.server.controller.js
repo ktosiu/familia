@@ -2,11 +2,11 @@ var People = require('mongoose').model('people');
 var peopleValidation = require('../lib/people.validation.js');
 
 exports.home = function(req, res){
-	res.render('peoples/views/home');
+	res.render('people/views/home');
 }
 
 exports.peopleById = function(req, res){
-	res.render('peoples/views/home');
+	res.render('people/views/home');
 }
 
 exports.listPeopleUI = function(req, res){
@@ -22,7 +22,7 @@ exports.listPeopleUI = function(req, res){
 }
 
 exports.addPeopleUI = function(req, res){
-	res.render('peoples/views/add_people');
+	res.render('people/views/add-people');
 }
 
 exports.createPeopleAPI = function(req, res){
@@ -62,7 +62,7 @@ exports.create = function(req, res){
 }
 
 exports.edit = function(req, res){
-	res.render('peoples/views/edit');
+	res.render('people/views/edit');
 }
 
 exports.update = function(req, res){
@@ -70,11 +70,11 @@ exports.update = function(req, res){
 }
 
 exports.view = function(req, res){
-	res.render('peoples/views/view');
+	res.render('people/views/view');
 }
 
 exports.delete = function(req, res){
-	res.render('peoples/views/delete');
+	res.render('people/views/delete');
 }
 
 exports.remove = function(req, res){
