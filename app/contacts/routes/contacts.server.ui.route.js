@@ -1,6 +1,7 @@
 var contactsController = require('../controllers/contacts.server.controller.js');
-	var domainRoot = '';
-	module.exports = function(app){
+var domainRoot = '';
+
+module.exports = function(app){
 	app.route(domainRoot + '/contacts')
 	.get(contactsController.home);
 	
@@ -22,4 +23,4 @@ var contactsController = require('../controllers/contacts.server.controller.js')
 	.get(contactsController.home); // delete.ejs
 
 	app.param('contact_id', contactsController.contactById);
-	}
+}
