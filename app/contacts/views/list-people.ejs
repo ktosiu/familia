@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><%= contacts.title %></title>
+	<meta name="description" content="<%= contacts.metaDescription %>">
+	<meta name="keywords" content="<%=  contacts.metaKeywords %>">
+	<meta name="author" content="guyswhocode">
+	<% include ../../home/views/partials/styles.ejs %>
+	<link rel="stylesheet" href="/contacts/public/css/contacts.css">
+</head>
+<body>
+	<div class="ui container">
+		<h1><%= contacts.title %></h1>
+		<table class="ui table">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Gender</th>
+					<th>Relation</th>
+					<th>Phone</th>
+					<th>Dead</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% if(contacts_list.length){ %>
+				<% contacts_list.forEach(function(contact){ %>
+				<tr>
+					<td><a href="/contacts/<%= contact._id %>"><%= contact.full_name %></a></td>
+					<td><%= contact.gender %></td>
+					<td><% if(contact.related_to_contact){ %><a href="/contacts/<%= contact.related_to_contact._id %>"><%= contact.related_to_contact.full_name %></a>'s <%= contact.relation %><% } %></td>
+					<td><%= contact.phone %></td>
+					<td><%= contact.is_dead %></td>
+				</tr>
+				<% });}  %>
+			</tbody>
+			<tfoot class="full-width">
+				<tr>
+					<th></th>
+					<th colspan="4">
+						<a href="/contacts/add" class="ui right floated small primary button">Add Person</a>
+						<!-- <div class="ui small button">
+							Check All
+						</div> -->
+					</th>
+				</tr>
+			</tfoot>
+		</table>
+	</div>
+	<% include ../../home/views/partials/footer.ejs %>
+	<% include ../../home/views/partials/scripts.ejs %>	
+</body>
+</html>
