@@ -5,9 +5,9 @@ var activeModules = [
 	"url": "/"
 },
 {
-	"name": "persons",
-	"title": "Persons",
-	"url": "/persons"
+	"name": "people",
+	"title": "People",
+	"url": "/people"
 }
 ];
 
