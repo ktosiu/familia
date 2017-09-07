@@ -77,6 +77,16 @@ exports.viewContactUI = function(req, res){
 	});
 }
 
+exports.viewContactAPI = function(req, res){
+	Contact.findOne({_id:req.contact_id}, function(err, contact){
+			if (err || contact==null || contact==undefined)
+				res.status(401).json(err);
+			else{
+				res.json(contact);
+			}
+	});
+}
+
 exports.home = function(req, res){
 	res.send("Home");
 }
