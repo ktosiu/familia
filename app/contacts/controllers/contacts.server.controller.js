@@ -1,18 +1,25 @@
 var Contact = require('mongoose').model('contact');
 var contactValidation = require('../lib/contacts.validation.js');
 
-exports.contactById = function(req, res){
-	res.render('contacts/views/home');
+exports.contactById = function(req, res, next, contact_id){
+	Contact.findOne({_id: contact_id}, function(err, contact){
+		if(err || contact===null || contact===undefined)
+            res.status(404).json({'msg':'Invalid Contact !'});
+		else{
+			req.contact_id = contact._id;
+			next();
+		}
+	});
 }
 
 exports.listContactUI = function(req, res){
 	Contact.find({})
 	.populate({ path: 'related_to_contact', select: 'full_name _id'})
-	.exec(function(err, contact_list){
-		if (err || contact_list==null || contact_list==undefined)
+	.exec(function(err, contacts_list){
+		if (err || contacts_list==null || contacts_list==undefined)
 			res.status(401).json(err);
 		else{
-			res.render('contacts/views/list-contact', {contact_list: contact_list})
+			res.render('contacts/views/list-contacts', {contacts_list: contacts_list})
 		}
 	});
 }
