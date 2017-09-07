@@ -12,7 +12,7 @@ module.exports = function(app){
 	.get(contactsController.addContactUI); // add.ejs
 
 	app.route(domainRoot + '/contacts/:contact_id')
-	.get(contactsController.home) // view.ejs
+	.get(contactsController.viewContactUI) // view.ejs
 	.put(contactsController.home)
 	.delete(contactsController.home);
 
