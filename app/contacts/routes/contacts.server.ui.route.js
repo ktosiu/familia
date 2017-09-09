@@ -17,7 +17,7 @@ module.exports = function(app){
 	.delete(contactsController.home);
 
 	app.route(domainRoot + '/contacts/:contact_id/edit')
-	.get(contactsController.home); // edit.ejs
+	.get(contactsController.editContactUI);
 
 	app.route(domainRoot + '/contacts/:contact_id/delete')
 	.get(contactsController.home); // delete.ejs
