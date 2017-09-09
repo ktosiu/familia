@@ -31,12 +31,14 @@
 					<td><% if(contact.related_to_contact){ %><a href="/contacts/<%= contact.related_to_contact._id %>"><%= contact.related_to_contact.full_name %></a>'s <%= contact.relation %><% } %></td>
 					<td><%= contact.phone %></td>
 					<td><%= contact.is_dead %></td>
-					<td><a href="" class="ui basic icon button" data-tooltip="Edit <%= contact.full_name %>" data-inverted="">
-						<i class="blue edit icon"></i>
-					</a>
-					<a href="" class="ui basic icon button" data-tooltip="Remove <%= contact.full_name %>" data-inverted="">
-						<i class="red trash icon"></i>
-					</a></td>
+					<td class="contact-actions">
+						<a href="/contacts/<%= contact._id %>/edit" class="ui basic icon button" data-tooltip="Edit <%= contact.full_name %>" data-inverted="">
+							<i class="blue edit icon"></i>
+						</a>
+						<div class="ui basic icon button remove" data-tooltip="Remove <%= contact.full_name %>" data-inverted="">
+							<i class="red trash icon"></i>
+						</div>
+					</td>
 				</tr>
 				<% });}  %>
 			</tbody>
