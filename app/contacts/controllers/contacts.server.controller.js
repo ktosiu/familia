@@ -98,6 +98,16 @@ exports.editContactUI = function(req, res){
 	});
 }
 
+exports.contactsDashboardUI = function(req, res){
+	Contact.find({}, function(err, contacts_list){
+		if (err || contacts_list==null || contacts_list==undefined)
+			res.status(401).json(err);
+		else{
+			res.render('contacts/views/contacts-dashboard', {contacts_list:contacts_list});
+		}
+	});
+}
+
 exports.home = function(req, res){
 	res.send("Home");
 }

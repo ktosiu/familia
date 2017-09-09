@@ -3,7 +3,7 @@ var domainRoot = '';
 
 module.exports = function(app){
 	app.route(domainRoot + '/contacts')
-	.get(contactsController.home);
+	.get(contactsController.contactsDashboardUI);
 	
 	app.route(domainRoot + '/contacts/list') 
 	.get(contactsController.listContactUI);

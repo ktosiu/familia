@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Familia</title>
+	<% include ../../home/views/partials/styles.ejs %>
+	<link rel="stylesheet" href="/contacts/public/css/contacts.css">
+</head>
+<body>
+	<br>
+	<div class="ui container">
+		<div class="ui four column grid">
+			<div class="column">
+				<div class="ui segment"><h1 class="ui center aligned header"><%= contacts_list.length %> Contacts</h1></div>
+			</div>
+			<div class="column">
+				<h1 class="ui header">Hello</h1>
+			</div>
+			<div class="column">
+				<div class="ui segment">
+					<canvas id="contacts-graph"/>
+				</div>
+			</div>
+		</div>
+	</div>
+	<% include ../../home/views/partials/scripts.ejs %>
+	<script src="/home/public/js/Chart.bundle.min.js"></script>
+	<script>
+		$(function(){
+			var ctx = document.getElementById("contacts-graph");
+			var myChart = new Chart(ctx, {
+				type: 'pie',
+				data: {
+					datasets: [{
+						data: [10, 20, 30, 40, 50],
+						backgroundColor: [
+						"#ff4d63",
+						"#e87055",
+						"#9f5d45",
+						"#d18e59",
+						"#fbe0a3"
+						]
+					}],
+
+					labels: [
+					"#ed8678",
+					"#f4cbcb",
+					"#71e8d8",
+					"#42bbc4",
+					"#a491c9"
+					]
+				}
+			});
+		});
+	</script>
+</body>
+</html>
