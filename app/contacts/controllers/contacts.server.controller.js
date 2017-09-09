@@ -20,7 +20,7 @@ exports.listContactUI = function(req, res){
 		if (err || contacts_list==null || contacts_list==undefined)
 			res.status(401).json(err);
 		else{
-			res.render('contacts/views/list-contacts', {contacts_list: contacts_list})
+			res.render('contacts/views/list-contacts', {contacts_list: contacts_list, moment: moment});
 		}
 	});
 }
