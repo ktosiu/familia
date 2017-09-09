@@ -33,7 +33,7 @@ exports.createContactAPI = function(req, res){
 		delete req.body.relation;
 		delete req.body.related_to_contact;
 	}
-	if (req.body.anniversaries.length == 1 && req.body.anniversaries.day == null) {
+	if (req.body.anniversaries.length == 1 && req.body.anniversaries[0].day == null) {
 		delete req.body.anniversaries;
 	}
 	var contact = new Contact(req.body);
