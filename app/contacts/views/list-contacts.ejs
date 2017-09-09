@@ -27,10 +27,10 @@
 				<% contacts_list.forEach(function(contact){ %>
 				<tr>
 					<td><a href="/contacts/<%= contact._id %>"><%= contact.full_name %></a></td>
-					<td><%= contact.gender %></td>
+					<td><i class="ui <%= contact.gender %> large icon"></i></td>
 					<td><% if(contact.related_to_contact){ %><a href="/contacts/<%= contact.related_to_contact._id %>"><%= contact.related_to_contact.full_name %></a>'s <%= contact.relation %><% } %></td>
 					<td><%= contact.phone %></td>
-					<td><%= contact.is_dead %></td>
+					<td><% if(contact.is_dead){ %><i class="ui check icon"></i><% } %></td>
 					<td class="contact-actions">
 						<a href="/contacts/<%= contact._id %>/edit" class="ui basic icon button" data-tooltip="Edit <%= contact.full_name %>" data-inverted="">
 							<i class="blue edit icon"></i>
