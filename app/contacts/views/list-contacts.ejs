@@ -19,6 +19,7 @@
 					<th>Relation</th>
 					<th>Phone</th>
 					<th>Dead</th>
+					<th>Actions</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -30,17 +31,22 @@
 					<td><% if(contact.related_to_contact){ %><a href="/contacts/<%= contact.related_to_contact._id %>"><%= contact.related_to_contact.full_name %></a>'s <%= contact.relation %><% } %></td>
 					<td><%= contact.phone %></td>
 					<td><%= contact.is_dead %></td>
+					<td><a href="" class="ui basic icon button" data-tooltip="Edit <%= contact.full_name %>" data-inverted="">
+						<i class="blue edit icon"></i>
+					</a>
+					<a href="" class="ui basic icon button" data-tooltip="Remove <%= contact.full_name %>" data-inverted="">
+						<i class="red trash icon"></i>
+					</a></td>
 				</tr>
 				<% });}  %>
 			</tbody>
 			<tfoot class="full-width">
 				<tr>
-					<th></th>
-					<th colspan="4">
+					<th colspan="6">
 						<a href="/contacts/add" class="ui right floated small primary button">Add Person</a>
-						<!-- <div class="ui small button">
+<!-- 						<a class="ui small right floated primary button">
 							Check All
-						</div> -->
+						</a> -->
 					</th>
 				</tr>
 			</tfoot>
