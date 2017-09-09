@@ -93,7 +93,7 @@ exports.editContactUI = function(req, res){
 		if (err || contact==null || contact==undefined)
 			res.status(401).json(err);
 		else{
-			res.render('contacts/views/edit-contact', {contact:contact});
+			res.render('contacts/views/edit-contact', {contact:contact, moment:moment});
 		}
 	});
 }
