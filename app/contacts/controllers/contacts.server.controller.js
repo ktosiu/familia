@@ -4,7 +4,7 @@ var contactValidation = require('../lib/contacts.validation.js');
 exports.contactById = function(req, res, next, contact_id){
 	Contact.findOne({_id: contact_id}, function(err, contact){
 		if(err || contact===null || contact===undefined)
-            res.status(404).json({'msg':'Invalid Contact !'});
+			res.status(404).json({'msg':'Invalid Contact !'});
 		else{
 			req.contact_id = contact._id;
 			next();
@@ -69,21 +69,21 @@ exports.fetchContactAPI = function(req, res){
 
 exports.viewContactUI = function(req, res){
 	Contact.findOne({_id:req.contact_id}, function(err, contact){
-			if (err || contact==null || contact==undefined)
-				res.status(401).json(err);
-			else{
-				res.render('contacts/views/view-contact', {contact: contact})
-			}
+		if (err || contact==null || contact==undefined)
+			res.status(401).json(err);
+		else{
+			res.render('contacts/views/view-contact', {contact: contact})
+		}
 	});
 }
 
 exports.viewContactAPI = function(req, res){
 	Contact.findOne({_id:req.contact_id}, function(err, contact){
-			if (err || contact==null || contact==undefined)
-				res.status(401).json(err);
-			else{
-				res.json(contact);
-			}
+		if (err || contact==null || contact==undefined)
+			res.status(401).json(err);
+		else{
+			res.json(contact);
+		}
 	});
 }
 
