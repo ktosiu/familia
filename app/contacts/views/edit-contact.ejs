@@ -1,16 +1,105 @@
 <!DOCTYPE html>
-	<html>
-	<head>
-	<title><%= contacts.title %></title>
-	<meta name="description" content="<%= contacts.metaDescription %>">
-	<meta name="keywords" content="<%=  contacts.metaKeywords %>">
-	<meta name="author" content="guyswhocode">
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Add Person</title>
 	<% include ../../home/views/partials/styles.ejs %>
 	<link rel="stylesheet" href="/contacts/public/css/contacts.css">
-	</head>
-	<body>
-	<h1><%= contacts.title %></h1>
-	<% include ../../home/views/partials/footer.ejs %>
-	<% include ../../home/views/partials/scripts.ejs %>	
-	</body>
-	</html>
+</head>
+<body>
+	<% if(contact){ %>
+	<section class="ui container">
+		<h1 class="ui header">Edit contact :  <%= contact.full_name %></h1>
+		<div class="ui grid">
+			<div class="six wide column" id="person_form">
+				<form action="/api/contacts" method="POST" class="ui form">
+					<div class="three fields">
+						<div class="field">
+							<label for="full_name">Full Name</label>
+							<input type="text" name="full_name" placeholder="Shajan Jacob" value="<%= contact.full_name %>">
+						</div>
+						<div class="field">
+							<label for="nick_name">Nick Name</label>
+							<input type="text" name="nick_name" placeholder="Shajan Jacob" value="<%= contact.nick_name %>">
+						</div>
+						<div class="field">
+							<label for="gender">Gender</label>
+							<select name="gender" id="select_gender" class="ui fluid dropdown">
+								<option value="male">Male</option>
+								<option value="female">Female</option>
+							</select>
+						</div>
+					</div>
+					<div class="two fields">
+						<div class="field">
+							<label for="anniversaries[][title]">Type</label>
+							<select name="anniversaries[][title]" id="select_title" class="ui fluid dropdown">
+								<option value="birth">Birth</option>
+								<option value="wedding">Wedding</option>
+								<option value="feast">Feast</option>
+								<option value="death">Death</option>
+							</select>
+						</div>
+						<div class="field">
+							<label for="anniversaries[][day]">Date</label>
+							<input type="text" name="anniversaries[][day]" placeholder="YYYY-MM-DD">
+						</div>
+					</div>
+					<div class="two fields">
+						<div class="field">
+							<label for="related_to_contact">Person</label>
+							<select name="related_to_contact" id="select_person" class="ui search fluid dropdown">
+								<option value="none">None</option>
+							</select>
+						</div>
+						<div class="field">
+							<label for="reation">Relation</label>
+							<select name="relation" id="select_relation" class="ui fluid dropdown">
+								<option value="none">None</option>
+								<option value="son">Son</option>
+								<option value="daughter">Daughter</option>
+								<option value="wife">Wife</option>
+								<option value="brother">Brother</option>
+								<option value="sister">Sister</option>
+							</select>
+						</div>
+					</div>
+					<div class="two fields">
+						<div class="field">
+							<label for="phone">Phone</label>
+							<input type="text" name="phone" placeholder="9747952378">
+						</div>
+						<div class="field">
+							<label for="email">Email</label>
+							<input type="text" name="email" placeholder="shajanjp@gmail.com">
+						</div>
+					</div>
+					<div class="field">
+						<label for="is_dead">Is Dead</label>
+						<input type="checkbox" name="is_dead" placeholder="">
+					</div>
+					<input type="submit" value="Add Person" class="ui fluid primary button">
+				</form>
+			</div>
+		</div>
+	</section>
+	<% } %>
+	<% include ../../home/views/partials/scripts.ejs %>
+	<script>
+		$('#select_title').dropdown();
+		$('#select_relation').dropdown();
+		$('#select_gender').dropdown();
+
+		$('#select_person').dropdown({
+			fields: {
+				name: 'full_name',
+				value: '_id'
+			},
+			apiSettings: {
+				url: '/api/contacts/list?first_name={query}',
+			},
+			localSearch: false
+		});
+	</script>
+</body>
+</html>
