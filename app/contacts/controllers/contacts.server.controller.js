@@ -1,5 +1,6 @@
 var Contact = require('mongoose').model('contact');
 var contactValidation = require('../lib/contacts.validation.js');
+var moment = require('moment');
 
 exports.contactById = function(req, res, next, contact_id){
 	Contact.findOne({_id: contact_id}, function(err, contact){
