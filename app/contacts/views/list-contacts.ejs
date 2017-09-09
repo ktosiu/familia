@@ -30,13 +30,17 @@
 					<td><i class="ui <%= contact.gender %> large icon"></i></td>
 					<td><% if(contact.related_to_contact){ %><a href="/contacts/<%= contact.related_to_contact._id %>"><%= contact.related_to_contact.full_name %></a>'s <%= contact.relation %><% } %></td>
 					<td><%= contact.phone %></td>
+					<td><% if(contact.anniversaries.length){ %><%= moment(contact.anniversaries[0].day).format("Do MMM YYYY"); %><% } %></td>
 					<td><% if(contact.is_dead){ %><i class="ui check icon"></i><% } %></td>
 					<td class="contact-actions">
 						<a href="/contacts/<%= contact._id %>/edit" class="ui basic icon button" data-tooltip="Edit <%= contact.full_name %>" data-inverted="">
 							<i class="blue edit icon"></i>
 						</a>
-						<div class="ui basic icon button remove" data-tooltip="Remove <%= contact.full_name %>" data-inverted="">
+						<div class="ui basic icon button remove-contact" data-tooltip="Remove <%= contact.full_name %>" data-inverted="">
 							<i class="red trash icon"></i>
+						</div>
+						<div class="ui basic icon button view-home" data-tooltip="View <%= contact.full_name %>'s home" data-inverted="">
+							<i class="brown home icon"></i>
 						</div>
 					</td>
 				</tr>
