@@ -12,6 +12,7 @@ var contactSchema = new Schema({
 	relation: String,
 	related_to_contact: { type: Schema.ObjectId, ref: 'contact'},
 	phone: String,
+	email: String,
 	avatar: String,
 	is_dead: Boolean
 });
