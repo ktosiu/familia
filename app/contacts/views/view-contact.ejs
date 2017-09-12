@@ -14,7 +14,7 @@
 	<div class="ui text container">
 		<div class="ui grid">
 			<div class="eight wide column">
-				<img src="/contacts/public/uploads/thumbs/default.jpg" class="ui rounded fluid image" alt="">
+				<img src="/contacts/public/uploads/avatars/<% if(contact.avatar){ %><%= contact.avatar %><% }else{ %>default.jpg<% } %>" class="ui rounded fluid image" alt="">
 				<h1 class="ui header"><%= contact.full_name %></h1>
 				<a href="tel:<%= contact.phone %>" class="ui basic icon button">
 					<i class="green phone icon"></i>
@@ -48,7 +48,7 @@
 						<tr>
 							<td>
 								<h4 class="ui image header">
-									<img src="/contacts/public/uploads/thumbs/default.jpg" class="ui mini rounded image">
+									<img src="/contacts/public/uploads/avatars/<% if(contact.avatar){ %><%= contact.avatar %><% }else{ %>default.jpg<% } %>" class="ui mini rounded image">
 									<div class="content">
 										<%= related_contact.full_name %>
 									</div>
