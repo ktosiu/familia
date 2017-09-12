@@ -65,6 +65,41 @@ exports.createContactAPI = function(req, res){
 	});
 }
 
+exports.updateContactAPI = function(req, res){
+	console.log("body", req.body);
+	if (req.body.relation == 'none'){
+		delete req.body.relation;
+		delete req.body.related_to_contact;
+	}
+	if (req.body.anniversaries[0].day == "" || req.body.anniversaries[0].day == null) {
+		delete req.body.anniversaries;
+	}
+	if(req.file){
+		req.body.avatar = req.contact_id + '-avatar.jpg';
+	}
+	Contact.findOneAndUpdate({ _id: req.contact_id}, req.body, {safe:true, upsert:true}, function(err, doc){
+		if (err) {
+			console.log(err);
+			res.status(500).json('');
+		}
+		else{
+			if (req.file)
+				gm(req.file.path)
+			.resize(200, 200)
+			.quality(90)
+			.write('app/contacts/public/uploads/avatars/' + req.contact_id + '-avatar.jpg', function (err) {
+				if (err)
+					res.json(err);
+				else{
+					console.log('Done uploading !');
+					fs.unlink(req.file.path);
+					res.status(201).json({'msg' : 'Contact Updated !'});
+				}
+			});
+		}
+	});
+}
+
 exports.listContactAPI = function(req, res){
 	Contact.find({})
 	.populate({ path: 'related_to_contact', select: 'full_name _id'})
@@ -120,23 +155,6 @@ exports.editContactUI = function(req, res){
 		else{
 			res.render('contacts/views/edit-contact', {contact:contact, moment:moment});
 		}
-	});
-}
-
-exports.updateContactAPI = function(req, res) {
-	console.log(req.body);
-	if (req.body.relation == 'none'){
-		delete req.body.relation;
-		delete req.body.related_to_contact;
-	}
-	if (req.body.anniversaries.length == 1 && req.body.anniversaries[0].day == null) {
-		delete req.body.anniversaries;
-	}
-	Contact.findOneAndUpdate({ _id: req.contact_id}, req.body, {safe:true, upsert:true}, function(err, doc){
-		if (err) 
-			res.status(500).json('');
-		else
-			res.status(201).json({'msg':'Contact Updated !'});
 	});
 }
 
