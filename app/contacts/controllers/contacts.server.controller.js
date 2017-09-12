@@ -153,3 +153,13 @@ exports.contactsDashboardUI = function(req, res){
 exports.home = function(req, res){
 	res.send("Home");
 }
+
+exports.removeContactAPI = function(req, res){
+	Contact.remove({_id:req.contact_id}, function(err){
+		if (err)
+			res.json(err);
+		else{
+			res.status(200).json("Contact Removed !")
+		}
+	});
+}
