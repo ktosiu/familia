@@ -91,8 +91,18 @@
 	<% include ../../home/views/partials/footer.ejs %>
 	<% include ../../home/views/partials/scripts.ejs %>
 	<script>
-		// $('.ui.modal')
-		// .modal('show');
+		$('.remove-contact').on('click', function(){
+			var contact_row = $(this).closest('tr');
+			var contact_id = contact_row.data('contact-id');
+			$.ajax({
+				type: 'DELETE',
+				url: '/api/contacts/' + contact_id,
+				success: function(data, status, xhr){
+					if(xhr.status == 200)
+						contact_row.remove();
+				}
+			});
+		});
 	</script>
 </body>
 </html>
