@@ -15,59 +15,61 @@
 	<div class="ui text container">
 		<div class="ui grid">
 			<div class="eight wide column">
-				<img src="/contacts/public/uploads/avatars/<% if(contact.avatar){ %><%= contact.avatar %><% }else{ %>default.jpg<% } %>" class="ui rounded fluid image" alt="">
+				<img src="/contacts/public/uploads/avatars/<% if(contact.avatar){ %><%= contact.avatar %><% }else{ %>default.jpg<% } %>" class="ui rounded fluid image" alt="">		
+			</div>
+			<div class="eight wide column">
 				<h1 class="ui header"><%= contact.full_name %></h1>
+				<% if(contact.phone){ %>
 				<a href="tel:<%= contact.phone %>" class="ui basic icon button" data-tooltip="<%= contact.phone %>">
 					<i class="green phone icon"></i>
 				</a>
+				<% } %>
+				<% if(contact.email){ %>
 				<a href="mailto:<%= contact.email %>" class="ui basic icon button" data-tooltip="<%= contact.email %>">
 					<i class="blue mail icon"></i>
 				</a>
+				<% } %>
 				<a href="/houses" class="ui basic icon button">
 					<i class="brown home icon"></i>
-				</a>		
-			</div>
-			<div class="eight wide column">
+				</a>
+				<% if(contact.anniversaries.length){ %>
 				<div class="ui segments">
-					<% if(contact.anniversaries.length){ %>
 					<% contact.anniversaries.forEach(function(anniversary){ %>
 					<div class="ui segment">
 						<p><i class="ui icon"></i><%= anniversary.title %> : <%= moment(anniversary.day).format("Do MMM YYYY"); %></p>
 					</div>
-					<% });}  %>
+					<% }); %>
 				</div>
-				<% if(related_contacts.length){ %>
-				<table class="ui table">
-					<thead>
-						<tr>
-							<th>Related Contacts</th>
-							<th></th>
-						</tr>
-					</thead>
-					<tbody>
-						<% related_contacts.forEach(function(related_contact){ %>
-						<tr>
-							<td>
-								<h4 class="ui image header">
-									<img src="/contacts/public/uploads/avatars/<% if(contact.avatar){ %><%= contact.avatar %><% }else{ %>default.jpg<% } %>" class="ui mini rounded image">
-									<div class="content">
-										<%= related_contact.full_name %>
-									</div>
-								</h4>
-							</td>
-							<td>
-								<a class="ui basic icon button" href="<%= related_contact._id %>"><i class="user icon"></i></a>
-							</td>
-						</tr>
-						<% }); %>
-					</tbody>
-				</table>
-				<% } %>						
+				<% } %>					
 			</div>
 		</div>
+		<br>
 		<div class="ui grid">
-			<div class="eight wide column">
-
+			<div class="column">
+				<% if(related_contacts.length){ %>
+				<div class="ui segments">
+					<div class="ui segment">
+						<h4>Related Contacts</h4>
+					</div>
+					<div class="ui segment">
+						<div class="ui four cards">
+							<% related_contacts.forEach(function(related_contact){ %>
+							<div class="ui card">
+								<div class="image">
+									<img src="/contacts/public/uploads/avatars/<% if(related_contact.avatar){ %><%= related_contact.avatar %><% }else{ %>default.jpg<% } %>">
+								</div>
+								<div class="content">
+									<a class="header" href="/contacts/<%= related_contact._id %>"><%= related_contact.full_name %></a>
+									<div class="meta">
+										<span class="date"><%= related_contact.relation %></span>
+									</div>
+								</div>
+							</div>
+							<% }); %>
+						</div>
+					</div>
+				</div>
+				<% } %>	
 			</div>
 		</div>
 	</div>
