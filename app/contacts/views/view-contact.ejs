@@ -10,7 +10,6 @@
 </head>
 <body>
 	<% include ../../home/views/partials/navbar.ejs %>
-	<br>
 	<% if(contact){ %>
 	<div class="ui text container contact">
 		<div class="ui grid">
@@ -80,7 +79,7 @@
 								<div class="content">
 									<a class="header" href="/contacts/<%= related_contact._id %>"><%= related_contact.full_name %></a>
 									<div class="meta">
-										<span class="relation"><%= related_contact.relation %></span>
+										<span class="capitalize"><%= related_contact.relation %></span>
 									</div>
 								</div>
 							</div>
