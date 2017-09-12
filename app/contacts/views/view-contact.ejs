@@ -72,6 +72,11 @@
 				<% } %>	
 			</div>
 		</div>
+		<br>
+		<div>
+			<a href="/contacts/<%= contact._id %>/edit" class="ui basic primary button">Update</a>
+			<a href="/contacts/<%= contact._id %>" class="ui basic red button">Delete</a>
+		</div>
 	</div>
 	<% } %>
 	<% include ../../home/views/partials/footer.ejs %>
