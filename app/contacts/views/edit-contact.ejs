@@ -8,11 +8,12 @@
 </head>
 <body>
 	<% if(contact){ %>
-	<section class="ui container">
+	<section class="ui text container">
 		<h1 class="ui header">Edit contact :  <%= contact.full_name %></h1>
 		<div class="ui grid">
-			<div class="six wide column" id="person_form">
-				<form id="update-contact-form" class="ui form" data-contact-id="<%= contact._id %>">
+			<div class="four wide column"></div>
+			<div class="twelve wide column" id="person_form">
+				<form action="/api/contacts/<%= contact._id %>" method="POST" enctype="multipart/form-data" id="update-contact-form" class="ui form" data-contact-id="<%= contact._id %>">
 					<div class="three fields">
 						<div class="field">
 							<label for="full_name">Full Name</label>
