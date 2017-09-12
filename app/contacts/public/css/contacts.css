@@ -1,6 +1,9 @@
-td i.male{
+.contact i.male{
 	color: #4080ff;
 }
-td i.female{
+.contact i.female{
 	color: #ff4080;
+}
+.card .meta .relation{
+	text-transform: capitalize;
 }
