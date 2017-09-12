@@ -1,5 +1,16 @@
-<nav>
-	<% modules.forEach( function(module) { %>
-	<li><a href="<%= module.url %>"><%= module.title %></a></li>
-	<% }); %>
-</nav>
+<div class="ui attached stackable menu">
+  <div class="ui container">
+    <a class="item">
+      <i class="address book outline graph icon"></i><strong>Familia</strong>
+    </a>
+    <a class="right item">
+      <i class="users icon"></i> Contatcs
+    </a>
+    <a class="right item">
+    <i class="home icon"></i> Houses
+    </a>
+    <div class="right item">
+      <div class="ui input"><input placeholder="Search..." type="text"></div>
+    </div>
+  </div>
+</div>
