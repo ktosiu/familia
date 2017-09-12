@@ -31,6 +31,12 @@
 							</select>
 						</div>
 					</div>
+					<div class="field">
+						<label for="file" class="ui icon button">
+							Choose Avatar Image
+						</label>
+						<input type="file" id="file" name="avatar" style="display:none">
+					</div>
 					<% if(contact.anniversaries.length>0){ %>
 					<% contact.anniversaries.forEach(function(ani){ %>
 					<div class="two fields">
