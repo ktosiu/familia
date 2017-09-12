@@ -98,6 +98,23 @@ exports.editContactUI = function(req, res){
 	});
 }
 
+exports.updateContactAPI = function(req, res) {
+	console.log(req.body);
+	if (req.body.relation == 'none'){
+		delete req.body.relation;
+		delete req.body.related_to_contact;
+	}
+	if (req.body.anniversaries.length == 1 && req.body.anniversaries[0].day == null) {
+		delete req.body.anniversaries;
+	}
+	Contact.findOneAndUpdate({ _id: req.contact_id}, req.body, {safe:true, upsert:true}, function(err, doc){
+		if (err) 
+			res.status(500).json('');
+		else
+			res.status(201).json({'msg':'Contact Updated !'});
+	});
+}
+
 exports.contactsDashboardUI = function(req, res){
 	Contact.find({}, function(err, contacts_list){
 		if (err || contacts_list==null || contacts_list==undefined)

@@ -9,7 +9,8 @@ module.exports = function(app){
 	.post(contactsController.createContactAPI);
 
 	app.route(domainRoot + '/contacts/:contact_id')
-	.get(contactsController.viewContactAPI);
+	.get(contactsController.viewContactAPI)
+	.put(contactsController.updateContactAPI);
 
 	app.param('contact_id', contactsController.contactById);
 }
