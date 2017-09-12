@@ -37,11 +37,27 @@
 				</span>
 				<% if(contact.anniversaries.length){ %>
 				<div class="ui segments">
-					<% contact.anniversaries.forEach(function(anniversary){ %>
 					<div class="ui segment">
-						<p><i class="ui icon"></i><%= anniversary.title %> : <%= moment(anniversary.day).format("Do MMM YYYY"); %></p>
+						<h4>Special Days</h4>
 					</div>
-					<% }); %>
+					<div class="ui segment">
+						<table class="ui table">
+							<tbody>
+								<% contact.anniversaries.forEach(function(anniversary){ %>
+								<tr>
+									<td>
+										<h4 class="ui image header">
+											<img src="/contacts/public/uploads/avatars/<% if(contact.avatar){ %><%= contact.avatar %><% }else{ %>default.jpg<% } %>" class="ui mini rounded image">
+											<div class="content">
+											<span><%= moment(anniversary.day).format("Do MMMM YYYY"); %></span>
+											</div>
+										</h4>
+									</td>
+								</tr>
+								<% }); %>
+							</tbody>
+						</table>
+					</div>
 				</div>
 				<% } %>					
 			</div>
@@ -64,7 +80,7 @@
 								<div class="content">
 									<a class="header" href="/contacts/<%= related_contact._id %>"><%= related_contact.full_name %></a>
 									<div class="meta">
-										<span class="date"><%= related_contact.relation %></span>
+										<span class="relation"><%= related_contact.relation %></span>
 									</div>
 								</div>
 							</div>
