@@ -60,7 +60,32 @@
 			</tfoot>
 		</table>
 	</div>
+
+	<div class="ui mini modal">
+		<div class="ui icon header">
+			<i class="archive icon"></i>
+			Archive Old Messages
+		</div>
+		<div class="content">
+			<p>Your inbox is getting full, would you like us to enable automatic archiving of old messages?</p>
+		</div>
+		<div class="actions">
+			<div class="ui default cancel button">
+				<i class="remove icon"></i>
+				No
+			</div>
+			<div class="ui green ok button">
+				<i class="checkmark icon"></i>
+				Yes
+			</div>
+		</div>
+	</div>
+
 	<% include ../../home/views/partials/footer.ejs %>
 	<% include ../../home/views/partials/scripts.ejs %>
+	<script>
+		// $('.ui.modal')
+		// .modal('show');
+	</script>
 </body>
 </html>
