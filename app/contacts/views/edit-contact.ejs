@@ -70,7 +70,6 @@
 						<div class="field">
 							<label for="related_to_contact">Person</label>
 							<select name="related_to_contact" id="select_person" class="ui search fluid dropdown">
-								<% if(contact.related_to_contact){ %><option value="<%= contact.related_to_contact._id %>"><%= contact.related_to_contact.full_name %></option><% } %>
 								<option value="none">None</option>
 							</select>
 						</div>
