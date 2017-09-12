@@ -9,9 +9,68 @@
 	<link rel="stylesheet" href="/contacts/public/css/contacts.css">
 </head>
 <body>
-	<div class="ui container">
-		<h1 class="ui header"><%= contact.full_name %></h1>
+	<br>
+	<% if(contact){ %>
+	<div class="ui text container">
+		<div class="ui grid">
+			<div class="eight wide column">
+				<img src="/contacts/public/uploads/thumbs/default.jpg" class="ui rounded fluid image" alt="">
+				<h1 class="ui header"><%= contact.full_name %></h1>
+				<a href="tel:<%= contact.phone %>" class="ui basic icon button">
+					<i class="green phone icon"></i>
+				</a>
+				<a href="mailto:<%= contact.email %>" class="ui basic icon button">
+					<i class="blue mail icon"></i>
+				</a>
+				<a href="/houses" class="ui basic icon button">
+					<i class="brown home icon"></i>
+				</a>		
+			</div>
+			<div class="eight wide column">
+				<div class="ui segments">
+					<% if(contact.anniversaries.length){ %>
+					<% contact.anniversaries.forEach(function(anniversary){ %>
+					<div class="ui segment">
+						<p><i class="ui icon"></i><%= anniversary.title %> : <%= moment(anniversary.day).format("Do MMM YYYY"); %></p>
+					</div>
+					<% });}  %>
+				</div>
+				<% if(related_contacts.length){ %>
+				<table class="ui table">
+					<thead>
+						<tr>
+							<th>Related Contacts</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<% related_contacts.forEach(function(related_contact){ %>
+						<tr>
+							<td>
+								<h4 class="ui image header">
+									<img src="/contacts/public/uploads/thumbs/default.jpg" class="ui mini rounded image">
+									<div class="content">
+										<%= related_contact.full_name %>
+									</div>
+								</h4>
+							</td>
+							<td>
+								<a class="ui basic icon button" href="<%= related_contact._id %>"><i class="user icon"></i></a>
+							</td>
+						</tr>
+						<% }); %>
+					</tbody>
+				</table>
+				<% } %>						
+			</div>
+		</div>
+		<div class="ui grid">
+			<div class="eight wide column">
+
+			</div>
+		</div>
 	</div>
+	<% } %>
 	<% include ../../home/views/partials/footer.ejs %>
 	<% include ../../home/views/partials/scripts.ejs %>	
 </body>
