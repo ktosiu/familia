@@ -42,8 +42,8 @@
 					<% contact.anniversaries.forEach(function(ani){ %>
 					<div class="two fields">
 						<div class="field">
-							<label for="anniversaries[][title]">Type</label>
-							<select name="anniversaries[][title]" id="select_title" class="ui fluid search dropdown">
+							<label for="anniversaries[0][title]">Type</label>
+							<select name="anniversaries[0][title]" id="select_title" class="ui fluid search dropdown">
 								<option value="<%= ani.title %>"><%= ani.title.charAt(0).toUpperCase() + ani.title.slice(1); %></option>
 								<option value="birth">Birth</option>
 								<option value="wedding">Wedding</option>
@@ -52,15 +52,15 @@
 							</select>
 						</div>
 						<div class="field">
-							<label for="anniversaries[][day]">Date</label>
-							<input type="text" name="anniversaries[][day]" placeholder="YYYY-MM-DD" value="<%= moment(ani.day).format("YYYY-MM-DD"); %>">
+							<label for="anniversaries[0][day]">Date</label>
+							<input type="text" name="anniversaries[0][day]" placeholder="YYYY-MM-DD" value="<%= moment(ani.day).format("YYYY-MM-DD"); %>">
 						</div>
 					</div>
 					<% });}else{ %>
 					<div class="two fields">
 						<div class="field">
-							<label for="anniversaries[][title]">Type</label>
-							<select name="anniversaries[][title]" id="select_title" class="ui fluid search dropdown">
+							<label for="anniversaries[0][title]">Type</label>
+							<select name="anniversaries[0][title]" id="select_title" class="ui fluid search dropdown">
 								<option value="birth">Birth</option>
 								<option value="wedding">Wedding</option>
 								<option value="feast">Feast</option>
@@ -68,8 +68,8 @@
 							</select>
 						</div>
 						<div class="field">
-							<label for="anniversaries[][day]">Date</label>
-							<input type="text" name="anniversaries[][day]" placeholder="YYYY-MM-DD">
+							<label for="anniversaries[0][day]">Date</label>
+							<input type="text" name="anniversaries[0][day]" placeholder="YYYY-MM-DD">
 						</div>
 					</div>
 					<% } %>
