@@ -16,10 +16,10 @@
 			<div class="eight wide column">
 				<img src="/contacts/public/uploads/avatars/<% if(contact.avatar){ %><%= contact.avatar %><% }else{ %>default.jpg<% } %>" class="ui rounded fluid image" alt="">
 				<h1 class="ui header"><%= contact.full_name %></h1>
-				<a href="tel:<%= contact.phone %>" class="ui basic icon button">
+				<a href="tel:<%= contact.phone %>" class="ui basic icon button" data-tooltip="<%= contact.phone %>">
 					<i class="green phone icon"></i>
 				</a>
-				<a href="mailto:<%= contact.email %>" class="ui basic icon button">
+				<a href="mailto:<%= contact.email %>" class="ui basic icon button" data-tooltip="<%= contact.email %>">
 					<i class="blue mail icon"></i>
 				</a>
 				<a href="/houses" class="ui basic icon button">
