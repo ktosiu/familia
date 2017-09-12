@@ -12,7 +12,7 @@ module.exports = function(app){
 
 	app.route(domainRoot + '/contacts/:contact_id')
 	.get(contactsController.viewContactAPI)
-	.put(contactsController.updateContactAPI)
+	.put(upload.single('avatar'), contactsController.updateContactAPI)
 	.delete(contactsController.removeContactAPI);
 
 	app.param('contact_id', contactsController.contactById);
