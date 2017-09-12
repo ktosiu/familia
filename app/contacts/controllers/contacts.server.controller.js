@@ -36,15 +36,32 @@ exports.createContactAPI = function(req, res){
 		delete req.body.relation;
 		delete req.body.related_to_contact;
 	}
-	if (req.body.anniversaries.length == 1 && req.body.anniversaries[0].day == null) {
+	console.log("day",req.body.anniversaries[0].day)
+	if (req.body.anniversaries[0].day == "" || req.body.anniversaries[0].day == null) {
 		delete req.body.anniversaries;
 	}
 	var contact = new Contact(req.body);
+	if(req.file){
+		contact.avatar = contact._id + '-avatar.jpg';
+	}
 	contact.save(function(err, contact){
-		if(!err)
-			res.status(201).json({'msg' : 'Contact Added !'});
-		else
+		if(err)
 			res.json(err);
+		else{
+			if (req.file)
+				gm(req.file.path)
+			.resize(200, 200)
+			.quality(90)
+			.write('app/contacts/public/uploads/avatars/' + contact._id + '-avatar.jpg', function (err) {
+				if (err)
+					res.json(err);
+				else{
+					console.log('Done uploading !');
+					fs.unlink(req.file.path);
+					res.status(201).json({'msg' : 'Contact Added !'});
+				}
+			});
+		}
 	});
 }
 

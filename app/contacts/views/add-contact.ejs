@@ -14,7 +14,7 @@
 			</div>
 			<div class="twelve wide column">
 				<h1 class="ui header">Add Person</h1>
-				<form action="/api/contacts" method="POST" class="ui form">
+				<form action="/api/contacts" method="POST" enctype="multipart/form-data" class="ui form">
 					<div class="three fields">
 						<div class="field">
 							<label for="full_name">Full Name</label>
@@ -40,8 +40,8 @@
 					</div>
 					<div class="two fields">
 						<div class="field">
-							<label for="anniversaries[][title]">Type</label>
-							<select name="anniversaries[][title]" id="select_title" class="ui fluid dropdown">
+							<label for="anniversaries[0][title]">Type</label>
+							<select name="anniversaries[0][title]" id="select_title" class="ui fluid dropdown">
 								<option value="birth">Birth</option>
 								<option value="wedding">Wedding</option>
 								<option value="feast">Feast</option>
@@ -49,8 +49,8 @@
 							</select>
 						</div>
 						<div class="field">
-							<label for="anniversaries[][day]">Date</label>
-							<input type="text" name="anniversaries[][day]" placeholder="YYYY-MM-DD">
+							<label for="anniversaries[0][day]">Date</label>
+							<input type="text" name="anniversaries[0][day]" placeholder="YYYY-MM-DD">
 						</div>
 					</div>
 					<div class="two fields">
