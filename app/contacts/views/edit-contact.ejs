@@ -121,6 +121,20 @@
 			},
 			localSearch: false
 		});
+
+		$('#update-contact').on('click', function(e){
+			alert("clicked");
+			e.preventDefault();
+			$.ajax({
+				type: "PUT",
+				url: '/api/contacts/' + $('#update-contact-form').data('contact-id'),
+				data: $('#update-contact-form').serialize(),
+				success: function(data, status, xhr){
+					if(xhr.status == 201)
+						window.location = "/contacts/list";
+				}
+			});
+		});
 	</script>
 </body>
 </html>
