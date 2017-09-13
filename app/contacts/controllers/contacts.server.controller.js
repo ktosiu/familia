@@ -48,19 +48,24 @@ exports.createContactAPI = function(req, res){
 		if(err)
 			res.json(err);
 		else{
-			if (req.file)
+			if(req.file){
 				gm(req.file.path)
-			.resize(200, 200)
-			.quality(90)
-			.write('app/contacts/public/uploads/avatars/' + contact._id + '-avatar.jpg', function (err) {
-				if (err)
-					res.json(err);
-				else{
-					console.log('Done uploading !');
-					fs.unlink(req.file.path);
-					res.status(201).json({'msg' : 'Contact Added !'});
-				}
-			});
+				.resize(200, 200)
+				.quality(90)
+				.write('app/contacts/public/uploads/avatars/' + contact._id + '-avatar.jpg', function (err) {
+					if (err)
+						res.json(err);
+					else{
+						console.log('Done uploading !');
+						fs.unlink(req.file.path);
+						res.status(201).json({'msg' : 'Contact Added !'});
+					}
+				});
+			}
+			else{
+				res.status(201).json({'msg' : 'Contact Added !'});
+
+			}
 		}
 	});
 }
