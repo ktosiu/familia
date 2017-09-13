@@ -9,7 +9,11 @@
 	<link rel="stylesheet" href="/contacts/public/css/contacts.css">
 </head>
 <body>
-	<h1><%= contacts.title %></h1>
+	<% include ../../home/views/partials/navbar.ejs %>
+	<div class="ui container">
+		
+		<h1><%= contacts.title %></h1>
+	</div>
 	<% include ../../home/views/partials/footer.ejs %>
 	<% include ../../home/views/partials/scripts.ejs %>	
 </body>
