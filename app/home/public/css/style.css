@@ -1,3 +1,7 @@
 .ui.menu{
 	border-radius: 0px;
 }
+footer#main-footer{
+	border-radius: 0px;
+	margin-bottom: 0px;
+}
