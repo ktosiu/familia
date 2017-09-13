@@ -83,21 +83,25 @@ exports.updateContactAPI = function(req, res){
 			res.status(500).json('');
 		}
 		else{
-			if (req.file)
+			if(req.file){
 				gm(req.file.path)
-			.resize(200, 200)
-			.quality(90)
-			.write('app/contacts/public/uploads/avatars/' + req.contact_id + '-avatar.jpg', function (err) {
-				if (err){
-					console.log(err);
-					res.json(err);
-				}
-				else{
-					console.log('Done uploading !');
-					fs.unlink(req.file.path);
-					res.status(201).json({'msg' : 'Contact Updated !'});
-				}
-			});
+				.resize(200, 200)
+				.quality(90)
+				.write('app/contacts/public/uploads/avatars/' + req.contact_id + '-avatar.jpg', function (err) {
+					if (err){
+						console.log(err);
+						res.json(err);
+					}
+					else{
+						console.log('Done uploading !');
+						fs.unlink(req.file.path);
+						res.status(201).json({'msg' : 'Contact Updated !'});
+					}
+				});
+			}
+			else{
+				res.status(201).json({'msg' : 'Contact Updated !'});
+			}
 		}
 	});
 }
