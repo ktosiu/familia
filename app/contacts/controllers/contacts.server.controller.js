@@ -115,8 +115,8 @@ exports.listContactAPI = function(req, res){
 }
 
 exports.fetchContactAPI = function(req, res){
-	var search = new RegExp('^(.* |)'+ req.query.full_name +'.*$', "i");
 	Contact.find({full_name:search}, {_id: 1, full_name: 1}, function(err, contact_list){
+	var search = new RegExp('^(.* |)'+ req.query.contact_name +'.*$', "i");
 		if (err || contact_list==null || contact_list==undefined)
 			res.status(401).json(err);
 		else{
