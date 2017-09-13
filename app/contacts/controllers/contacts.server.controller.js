@@ -167,7 +167,7 @@ exports.contactsDashboardUI = function(req, res){
 		else{
 			res.render('contacts/views/contacts-dashboard', {contacts_list:contacts_list});
 		}
-	});
+	}).limit(6);
 }
 
 exports.home = function(req, res){
