@@ -1,10 +1,18 @@
 <div class="ui stackable menu">
-  <div class="ui container">
-    <div class="item">
-      <img src="/home/public/img/familia-logo.png">
-    </div>
-    <a href="/" class="item">Familia</a>
-    <a href="/contacts" class="item">Contacts</a>
-    <a href="/home" class="item">Home</a>
-  </div>
+	<div class="ui container">
+		<div class="item">
+			<img src="/home/public/img/familia-logo.png">
+		</div>
+		<a href="/" class="item">Familia</a>
+		<div class="ui dropdown item">
+			Contacts
+			<i class="dropdown icon"></i>
+			<div class="menu">
+				<a href="/contacts/add" class="item">Add</a>
+				<a href="/contacts/list" class="item">List</a>
+				<a href="/contacts/manage" class="item">Manage</a>
+			</div>
+		</div>
+		<a href="/houses" class="item">Houses</a>
+	</div>
 </div>
