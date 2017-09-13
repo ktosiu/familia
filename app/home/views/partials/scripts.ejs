@@ -3,4 +3,16 @@
 <script src="/home/public/js/jquery.tablesort.min.js"></script>
 <script>
 	$('.ui.menu .dropdown').dropdown();
+	$('#navbar-search-contacts')
+	.search({
+		apiSettings: {
+			url: '/api/contacts/list?full_name={query}'
+		},
+		fields: {
+			results : 'results',
+			title   : 'full_name',
+			url     : '_id'
+		},
+		minCharacters : 3
+	});
 </script>
