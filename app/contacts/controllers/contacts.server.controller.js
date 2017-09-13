@@ -88,8 +88,10 @@ exports.updateContactAPI = function(req, res){
 			.resize(200, 200)
 			.quality(90)
 			.write('app/contacts/public/uploads/avatars/' + req.contact_id + '-avatar.jpg', function (err) {
-				if (err)
+				if (err){
+					console.log(err);
 					res.json(err);
+				}
 				else{
 					console.log('Done uploading !');
 					fs.unlink(req.file.path);
