@@ -17,7 +17,7 @@
 				<img src="/contacts/public/uploads/avatars/<% if(contact.avatar){ %><%= contact.avatar %><% }else{ %>default.jpg<% } %>" class="ui rounded fluid image" alt="">		
 			</div>
 			<div class="eight wide column">
-				<h1 class="ui header"><%= contact.full_name %></h1>
+				<h1 class="ui header marginless"><%= contact.full_name %></h1>
 				<% if(contact.phone){ %>
 				<a href="tel:<%= contact.phone %>" class="ui basic icon button" data-tooltip="<%= contact.phone %>">
 					<i class="green phone icon"></i>
