@@ -7,6 +7,7 @@
 	<link rel="stylesheet" href="/contacts/public/css/contacts.css">
 </head>
 <body>
+	<% include ../../home/views/partials/navbar.ejs %>
 	<% if(contact){ %>
 	<section class="ui text container">
 		<h1 class="ui header">Edit contact :  <%= contact.full_name %></h1>
