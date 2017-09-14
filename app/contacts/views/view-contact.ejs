@@ -18,6 +18,7 @@
 			</div>
 			<div class="eight wide column">
 				<h1 class="ui header marginless"><%= contact.full_name %></h1>
+				<% if(contact.nick_name){ %> <p>(<%= contact.nick_name %>)</p><% } %>
 				<% if(contact.phone){ %>
 				<a href="tel:<%= contact.phone %>" class="ui basic icon button" data-tooltip="<%= contact.phone %>">
 					<i class="green phone icon"></i>
