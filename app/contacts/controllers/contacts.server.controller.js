@@ -125,11 +125,22 @@ exports.listContactAPI = function(req, res){
 
 exports.fetchContactAPI = function(req, res){
 	var search = new RegExp('^(.* |)'+ req.query.contact_name +'.*$', "i");
-	Contact.find({$or:[{full_name:search},{nick_name:search}]}, {_id: 1, full_name: 1}, function(err, contact_list){
+	Contact.find({$or:[{full_name:search},{nick_name:search}]}, {_id: 1, full_name: 1, avatar: 1, related_to_contact: 1, relation: 1})
+	.populate({ path: 'related_to_contact', select: '_id full_name'})
+	.exec(function(err, contact_list){
 		if (err || contact_list==null || contact_list==undefined)
 			res.status(401).json(err);
 		else{
-			res.json({success:true, results: contact_list})		
+			var arranged_contact_list = [];
+			contact_list.forEach(function(con){
+				var temp_con = {};
+				temp_con.full_name = con.full_name;
+				temp_con.description = con.related_to_contact.full_name + "'s " + con.relation;
+				temp_con.avatar = '/contacts/public/uploads/avatars/' + con.avatar;
+				temp_con.url = '/contacts/' + con._id;
+				arranged_contact_list.push(temp_con);
+			});
+			res.json({success:true, results: arranged_contact_list})		
 		}
 	});
 }
