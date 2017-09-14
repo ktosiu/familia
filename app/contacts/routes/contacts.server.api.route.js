@@ -5,6 +5,7 @@ var domainRoot = '/api';
 
 module.exports = function(app){
 	app.route(domainRoot + '/contacts')
+	.get(contactsController.listContactAPI)
 	.post(upload.single('avatar'), contactsController.createContactAPI);
 
 	app.route(domainRoot + '/contacts/list')
