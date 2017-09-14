@@ -12,8 +12,8 @@
 		<header class="ui vertical center aligned segment" id="home-header">		
 			<div class="ui center aligned grid">
 				<div class="column branding">
-				<img src="/home/public/img/familia-logo.png" alt="" class="image thumbnail">
-				<h1 class="ui header">Familia</h1>
+					<img src="/home/public/img/familia-logo.png" alt="" class="image thumbnail">
+					<h1 class="ui header">Familia</h1>
 				</div>
 			</div>
 		</header>
@@ -41,25 +41,19 @@
 				<% } %>
 			</div>
 		</div>
-	</div>
-	<% include ../../home/views/partials/footer.ejs %>
-	<% include ../../home/views/partials/scripts.ejs %>
-<!-- 	<div class="ui container">
-		<div class="ui four column grid">
-			<div class="column">
-				<div class="ui segment"><h1 class="ui center aligned header"><%= contacts_list.length %> Contacts</h1></div>
+		<div class="ui segments">
+			<div class="ui segment">
+				<h4 class="ui header">Graph</h4>
 			</div>
-			<div class="column">
-				<h1 class="ui header">Hello</h1>
-			</div>
-			<div class="column">
-				<div class="ui segment">
-					<canvas id="contacts-graph"/>
-				</div>
+			<div class="ui segment">
+				<canvas id="contacts-graph"/>
 			</div>
 		</div>
 	</div>
+	<% include ../../home/views/partials/footer.ejs %>
+	<% include ../../home/views/partials/scripts.ejs %>
 	<script src="/home/public/js/Chart.bundle.min.js"></script>
+	
 	<script>
 		$(function(){
 			var ctx = document.getElementById("contacts-graph");
