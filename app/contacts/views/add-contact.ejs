@@ -8,87 +8,90 @@
 </head>
 <body>
 	<% include ../../home/views/partials/navbar.ejs %>
-	<div class="ui text container">
+	<div class="ui container">
 		<div class="ui stackable grid">
-			<div class="six wide column">
+			<div class="eight wide column">
+				<div class="ui segment">
+					<h1 class="ui header">Add Person</h1>
+					<form action="/api/contacts" method="POST" enctype="multipart/form-data" class="ui form">
+						<div class="three fields">
+							<div class="field">
+								<label for="full_name">Full Name</label>
+								<input type="text" name="full_name" placeholder="Shajan Jacob">
+							</div>
+							<div class="field">
+								<label for="nick_name">Nick Name</label>
+								<input type="text" name="nick_name" placeholder="Shajan Jacob">
+							</div>
+							<div class="field">
+								<label for="gender">Gender</label>
+								<select name="gender" id="select_gender" class="ui fluid dropdown">
+									<option value="male">Male</option>
+									<option value="female">Female</option>
+								</select>
+							</div>
+						</div>
+						<div class="field">
+							<label for="file" class="ui basic icon button">
+								Choose Avatar Image
+							</label>
+							<input type="file" id="file" name="avatar" style="display:none">
+						</div>
+						<div class="two fields">
+							<div class="field">
+								<label for="anniversaries[0][title]">Type</label>
+								<select name="anniversaries[0][title]" id="select_title" class="ui fluid dropdown">
+									<option value="birth">Birth</option>
+									<option value="wedding">Wedding</option>
+									<option value="feast">Feast</option>
+									<option value="death">Death</option>
+								</select>
+							</div>
+							<div class="field">
+								<label for="anniversaries[0][day]">Date</label>
+								<input type="text" name="anniversaries[0][day]" placeholder="YYYY-MM-DD">
+							</div>
+						</div>
+						<div class="two fields">
+							<div class="field">
+								<label for="related_to_contact">Person</label>
+								<select name="related_to_contact" id="select_person" class="ui search fluid dropdown">
+									<option value="none">None</option>
+								</select>
+							</div>
+							<div class="field">
+								<label for="reation">Relation</label>
+								<select name="relation" id="select_relation" class="ui fluid search dropdown">
+									<option value="none">None</option>
+									<option value="brother">Brother</option>
+									<option value="daughter">Daughter</option>
+									<option value="husband">Husband</option>
+									<option value="sister">Sister</option>
+									<option value="son">Son</option>
+									<option value="wife">Wife</option>
+								</select>
+							</div>
+						</div>
+						<div class="two fields">
+							<div class="field">
+								<label for="phone">Phone</label>
+								<input type="text" name="phone" placeholder="9747952378">
+							</div>
+							<div class="field">
+								<label for="email">Email</label>
+								<input type="text" name="email" placeholder="shajanjp@gmail.com">
+							</div>
+						</div>
+						<div class="field">
+							<label for="is_dead">Is Dead</label>
+							<input type="checkbox" name="is_dead" placeholder="">
+						</div>
+						<input type="submit" value="Add Person" class="ui primary button">
+					</form>
+				</div>
 			</div>
-			<div class="ten wide column">
-				<h1 class="ui header">Add Person</h1>
-				<form action="/api/contacts" method="POST" enctype="multipart/form-data" class="ui form">
-					<div class="three fields">
-						<div class="field">
-							<label for="full_name">Full Name</label>
-							<input type="text" name="full_name" placeholder="Shajan Jacob">
-						</div>
-						<div class="field">
-							<label for="nick_name">Nick Name</label>
-							<input type="text" name="nick_name" placeholder="Shajan Jacob">
-						</div>
-						<div class="field">
-							<label for="gender">Gender</label>
-							<select name="gender" id="select_gender" class="ui fluid dropdown">
-								<option value="male">Male</option>
-								<option value="female">Female</option>
-							</select>
-						</div>
-					</div>
-					<div class="field">
-						<label for="file" class="ui icon button">
-							Choose Avatar Image
-						</label>
-						<input type="file" id="file" name="avatar" style="display:none">
-					</div>
-					<div class="two fields">
-						<div class="field">
-							<label for="anniversaries[0][title]">Type</label>
-							<select name="anniversaries[0][title]" id="select_title" class="ui fluid dropdown">
-								<option value="birth">Birth</option>
-								<option value="wedding">Wedding</option>
-								<option value="feast">Feast</option>
-								<option value="death">Death</option>
-							</select>
-						</div>
-						<div class="field">
-							<label for="anniversaries[0][day]">Date</label>
-							<input type="text" name="anniversaries[0][day]" placeholder="YYYY-MM-DD">
-						</div>
-					</div>
-					<div class="two fields">
-						<div class="field">
-							<label for="related_to_contact">Person</label>
-							<select name="related_to_contact" id="select_person" class="ui search fluid dropdown">
-								<option value="none">None</option>
-							</select>
-						</div>
-						<div class="field">
-							<label for="reation">Relation</label>
-							<select name="relation" id="select_relation" class="ui fluid search dropdown">
-								<option value="none">None</option>
-								<option value="brother">Brother</option>
-								<option value="daughter">Daughter</option>
-								<option value="husband">Husband</option>
-								<option value="sister">Sister</option>
-								<option value="son">Son</option>
-								<option value="wife">Wife</option>
-							</select>
-						</div>
-					</div>
-					<div class="two fields">
-						<div class="field">
-							<label for="phone">Phone</label>
-							<input type="text" name="phone" placeholder="9747952378">
-						</div>
-						<div class="field">
-							<label for="email">Email</label>
-							<input type="text" name="email" placeholder="shajanjp@gmail.com">
-						</div>
-					</div>
-					<div class="field">
-						<label for="is_dead">Is Dead</label>
-						<input type="checkbox" name="is_dead" placeholder="">
-					</div>
-					<input type="submit" value="Add Person" class="ui primary button">
-				</form>
+			<div class="eight wide column">
+				<img src="/home/public/img/familia-logo-full.png" alt="" class="ui image">
 			</div>
 		</div>
 	</div>
