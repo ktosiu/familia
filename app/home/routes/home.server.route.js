@@ -1,5 +1,7 @@
+var homeController = require('../controllers/home.server.controller.js');
+var contactsController = require('../../contacts/controllers/contacts.server.controller.js');
+
 module.exports = function(app){
-	var homeController = require('../controllers/home.server.controller.js');
 	app.route('/')
-	.get(homeController.home);
+	.get(contactsController.contactsDashboardUI);
 }
