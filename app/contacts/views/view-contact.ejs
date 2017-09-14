@@ -84,6 +84,19 @@
 								</div>
 							</div>
 							<% }); %>
+							<% if(contact.related_to_contact){ %>
+							<div class="ui card">
+								<div class="image">
+									<img src="/contacts/public/uploads/avatars/<% if(contact.related_to_contact.avatar){ %><%= contact.related_to_contact.avatar %><% }else{ %>default.jpg<% } %>">
+								</div>	
+								<div class="content">
+									<a class="header" href="/contacts/<%= contact.related_to_contact._id %>"><%= contact.related_to_contact.full_name %></a>
+									<div class="meta">
+										<span class="capitalize">Root</span>
+									</div>
+								</div>
+							</div>
+							<% } %>
 						</div>
 					</div>
 				</div>

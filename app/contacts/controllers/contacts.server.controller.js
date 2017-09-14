@@ -135,7 +135,9 @@ exports.fetchContactAPI = function(req, res){
 }
 
 exports.viewContactUI = function(req, res){
-	Contact.findOne({_id:req.contact_id}, function(err, contact){
+	Contact.findOne({_id:req.contact_id})
+	.populate({ path: 'related_to_contact'})
+	.exec(function(err, contact){
 		if (err || contact==null || contact==undefined)
 			res.status(401).json(err);
 		else{
