@@ -58,12 +58,12 @@ exports.createContactAPI = function(req, res){
 					else{
 						console.log('Done uploading !');
 						fs.unlink(req.file.path);
-						res.status(201).json({'msg' : 'Contact Added !'});
+						res.status(201).json({'msg':'Contact Added !',contact_id: contact._id});
 					}
 				});
 			}
 			else{
-				res.status(201).json({'msg' : 'Contact Added !'});
+				res.status(201).json({'msg' : 'Contact Added !',contact_id: contact._id});
 
 			}
 		}
