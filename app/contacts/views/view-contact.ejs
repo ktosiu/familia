@@ -93,7 +93,7 @@
 								<div class="content">
 									<a class="header" href="/contacts/<%= contact.related_to_contact._id %>"><%= contact.related_to_contact.full_name %></a>
 									<div class="meta">
-										<span class="capitalize">Root</span>
+										<span class="capitalize" id="root-relation" data-root-relation="<%= contact.relation %>">Root</span>
 									</div>
 								</div>
 							</div>
@@ -113,5 +113,9 @@
 	<% } %>
 	<% include ../../home/views/partials/footer.ejs %>
 	<% include ../../home/views/partials/scripts.ejs %>	
+	<script src="/contacts/public/js/script.js"></script>
+	<script>
+		$('#root-relation').html(reverse_relarion($('#root-relation').data('root-relation')));
+	</script>
 </body>
 </html>
