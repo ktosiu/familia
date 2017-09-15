@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Add Person</title>
+	<title>Add House</title>
 	<% include ../../home/views/partials/styles.ejs %>
 	<link rel="stylesheet" href="/home/public/css/calendar.min.css">
 	<link rel="stylesheet" href="/contacts/public/css/contacts.css">
@@ -15,9 +15,15 @@
 				<div class="ui segment">
 					<h1 class="ui header">Add House</h1>
 					<form action="/api/houses" method="POST" enctype="multipart/form-data" class="ui form">
-						<div class="field">
-							<label for="title">Title</label>
-							<input type="text" name="title" placeholder="Agi's Nest">
+						<div class="two fields">
+							<div class="field">
+								<label for="title">Title</label>
+								<input type="text" name="title" placeholder="Agi's Nest">
+							</div>
+							<div class="field">
+								<label for="phone">Phone</label>
+								<input type="text" name="phone" placeholder="0485224455">
+							</div>
 						</div>
 						<div class="two fields">
 							<div class="field">
@@ -28,6 +34,10 @@
 								<label for="landmark">Landmark</label>
 								<input type="text" name="landmark" placeholder="St Mary's Church">
 							</div>							
+						</div>
+						<div class="field">
+							<label for="latlong">Geolocation</label>
+							<input type="text" name="latlong" placeholder="24.553221,32.124643">
 						</div>
 						<div class="two fields">
 							<div class="field">
@@ -40,7 +50,7 @@
 								<select name="contacts" id="select-member-contacts" class="ui search multiple dropdown"></select>
 							</div>
 						</div>
-						<input type="submit" value="Add Person" id="add-contact" class="ui primary button">
+						<input type="submit" value="Add House" id="add-house" class="ui primary button">
 					</form>
 				</div>
 			</div>
