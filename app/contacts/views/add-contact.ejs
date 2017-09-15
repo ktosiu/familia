@@ -38,25 +38,28 @@
 							</label>
 							<input type="file" id="file" name="avatar" style="display:none">
 						</div>
-						<div class="two fields">
-							<div class="field">
-								<label for="anniversaries[0][title]">Type</label>
-								<select name="anniversaries[0][title]" id="select_title" class="ui fluid dropdown">
-									<option value="birth">Birth</option>
-									<option value="wedding">Wedding</option>
-									<option value="feast">Feast</option>
-									<option value="death">Death</option>
-								</select>
-							</div>
-							<div class="field">
-								<label for="anniversaries[0][day]">Date</label>
-								<div class="ui calendar" id="select-day">
-									<div class="ui input">
-										<input type="text" name="anniversaries[0][day]" placeholder="YYYY-MM-DD" autocomplete="off">
+						<div id="anniversaries-list">
+							<div class="two fields anniversary">
+								<div class="field">
+									<label>Type</label>
+									<select name="anniversaries[0][title]" class="ui fluid dropdown select-title" data-handle="anni-title">
+										<option value="birth">Birth</option>
+										<option value="wedding">Wedding</option>
+										<option value="feast">Feast</option>
+										<option value="death">Death</option>
+									</select>
+								</div>
+								<div class="field">
+									<label>Date</label>
+									<div class="ui calendar select-day">
+										<div class="ui input">
+											<input type="text" name="anniversaries[0][day]" placeholder="YYYY-MM-DD" autocomplete="off" data-handle="anni-day">
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
+						<span class="ui icon button" id="add-anniversary"><i class="green add icon"></i></span>
 						<div class="two fields">
 							<div class="field">
 								<label for="related_to_contact">Person</label>
@@ -103,7 +106,23 @@
 	<% include ../../home/views/partials/scripts.ejs %>
 	<script src="/home/public/js/calendar.min.js"></script>
 	<script>
-		$('#select_title').dropdown();
+		var make_calendar = function(item){
+			$(item).calendar({
+				monthFirst: false,
+				type:'date',
+				formatter: {
+					date: function (date, settings) {
+						if (!date) return '';
+						var day = date.getDate();
+						var month = date.getMonth() + 1;
+						var year = date.getFullYear();
+						return year + '-' + month + '-' + day;
+					}
+				}
+			});
+		};
+
+		$('.select-title').dropdown();
 		$('#select_relation').dropdown();
 		$('#select_gender').dropdown();
 
@@ -118,18 +137,19 @@
 			localSearch: false
 		});
 
-		$('#select-day').calendar({
-			monthFirst: false,
-			type:'date',
-			formatter: {
-				date: function (date, settings) {
-					if (!date) return '';
-					var day = date.getDate();
-					var month = date.getMonth() + 1;
-					var year = date.getFullYear();
-					return year + '-' + month + '-' + day;
-				}
-			}
+		make_calendar('.select-day');
+
+		$('#add-anniversary').on('click', function(req, res){
+			var anni_num = 0;
+			$('#anniversaries-list .anniversary:first').clone().appendTo('#anniversaries-list');
+			$('#anniversaries-list .anniversary:last .select-title, #anniversaries-list .anniversary:last .select-day').val('');
+			$('#anniversaries-list .anniversary:last .select-title').dropdown();
+			make_calendar('#anniversaries-list .anniversary:last .select-day');
+			$('#anniversaries-list .anniversary').each(function(index){
+				$(this).find('[data-handle="anni-title"]').attr('name', "anniversaries[" + anni_num + "][title]");
+				$(this).find('[data-handle="anni-day"]').attr('name', "anniversaries[" + anni_num + "][day]");
+				anni_num++;
+			})
 		});
 
 		$('#add-contact').on('click', function(e){
