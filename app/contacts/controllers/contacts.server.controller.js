@@ -213,3 +213,12 @@ exports.removeContactAPI = function(req, res){
 		}
 	});
 }
+
+exports.housesDashboardUI = function(req, res){
+	res.render('contacts/views/add-house');
+}
+
+
+exports.addHouseUI = function(req, res){
+	res.render('contacts/views/add-house');
+}
