@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<title>Update <%= contact.full_name %> - Familia</title>
 	<% include ../../home/views/partials/styles.ejs %>
+	<link rel="stylesheet" href="/home/public/css/calendar.min.css">
 	<link rel="stylesheet" href="/contacts/public/css/contacts.css">
 </head>
 <body>
@@ -54,7 +55,11 @@
 							</div>
 							<div class="field">
 								<label for="anniversaries[0][day]">Date</label>
-								<input type="text" name="anniversaries[0][day]" placeholder="YYYY-MM-DD" value="<%= moment(ani.day).format("YYYY-MM-DD"); %>">
+								<div class="ui calendar" id="select-day">
+									<div class="ui input">
+										<input type="text" name="anniversaries[0][day]" placeholder="YYYY-MM-DD" autocomplete="off" value="<%= moment(ani.day).format("YYYY-MM-DD"); %>">
+									</div>
+								</div>
 							</div>
 						</div>
 						<% });}else{ %>
@@ -119,6 +124,7 @@
 	</section>
 	<% } %>
 	<% include ../../home/views/partials/scripts.ejs %>
+	<script src="/home/public/js/calendar.min.js"></script>
 	<script>
 		$('#select_title').dropdown();
 		$('#select_relation').dropdown();
@@ -148,6 +154,20 @@
 						window.location = "/contacts/list";
 				}
 			});
+		});
+
+		$('#select-day').calendar({
+			monthFirst: false,
+			type:'date',
+			formatter: {
+				date: function (date, settings) {
+					if (!date) return '';
+					var day = date.getDate();
+					var month = date.getMonth() + 1;
+					var year = date.getFullYear();
+					return year + '-' + month + '-' + day;
+				}
+			}
 		});
 	</script>
 </body>
