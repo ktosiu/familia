@@ -40,45 +40,52 @@
 							</label>
 							<input type="file" id="file" name="avatar" style="display:none">
 						</div>
-						<% if(contact.anniversaries.length>0){ %>
-						<% contact.anniversaries.forEach(function(ani){ %>
-						<div class="two fields">
-							<div class="field">
-								<label for="anniversaries[0][title]">Type</label>
-								<select name="anniversaries[0][title]" id="select_title" class="ui fluid search dropdown">
-									<option value="<%= ani.title %>"><%= ani.title.charAt(0).toUpperCase() + ani.title.slice(1); %></option>
-									<option value="birth">Birth</option>
-									<option value="wedding">Wedding</option>
-									<option value="feast">Feast</option>
-									<option value="death">Death</option>
-								</select>
-							</div>
-							<div class="field">
-								<label for="anniversaries[0][day]">Date</label>
-								<div class="ui calendar" id="select-day">
-									<div class="ui input">
-										<input type="text" name="anniversaries[0][day]" placeholder="YYYY-MM-DD" autocomplete="off" value="<%= moment(ani.day).format("YYYY-MM-DD"); %>">
+						<div id="anniversaries-list">
+							<% if(contact.anniversaries.length>0){ %>
+							<% contact.anniversaries.forEach(function(ani){ %>
+							<div class="two fields anniversary">
+								<div class="field">
+									<label for="anniversaries[0][title]">Type</label>
+									<select name="anniversaries[0][title]" class="ui fluid search dropdown select-title" data-handle="anni-title">
+										<option value="<%= ani.title %>"><%= ani.title.charAt(0).toUpperCase() + ani.title.slice(1); %></option>
+										<option value="birth">Birth</option>
+										<option value="wedding">Wedding</option>
+										<option value="feast">Feast</option>
+										<option value="death">Death</option>
+									</select>
+								</div>
+								<div class="field">
+									<label for="anniversaries[0][day]">Date</label>
+									<div class="ui calendar select-day">
+										<div class="ui input">
+											<input type="text" data-handle="anni-day" name="anniversaries[0][day]" placeholder="YYYY-MM-DD" autocomplete="off" value="<%= moment(ani.day).format("YYYY-MM-DD"); %>">
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-						<% });}else{ %>
-						<div class="two fields">
-							<div class="field">
-								<label for="anniversaries[0][title]">Type</label>
-								<select name="anniversaries[0][title]" id="select_title" class="ui fluid search dropdown">
-									<option value="birth">Birth</option>
-									<option value="wedding">Wedding</option>
-									<option value="feast">Feast</option>
-									<option value="death">Death</option>
-								</select>
+							<% });}else{ %>
+							<div class="two fields anniversary">
+								<div class="field">
+									<label for="anniversaries[0][title]">Type</label>
+									<select name="anniversaries[0][title]" class="ui fluid search dropdown select-title" data-handle="anni-title">
+										<option value="birth">Birth</option>
+										<option value="wedding">Wedding</option>
+										<option value="feast">Feast</option>
+										<option value="death">Death</option>
+									</select>
+								</div>
+								<div class="field">
+									<label for="anniversaries[0][day]">Date</label>
+									<div class="ui calendar select-day">
+										<div class="ui input">
+											<input type="text" name="anniversaries[0][day]" placeholder="YYYY-MM-DD" autocomplete="off" data-handle="anni-day">
+										</div>
+									</div>
+								</div>
 							</div>
-							<div class="field">
-								<label for="anniversaries[0][day]">Date</label>
-								<input type="text" name="anniversaries[0][day]" placeholder="YYYY-MM-DD">
-							</div>
+							<% } %>
 						</div>
-						<% } %>
+						<span class="ui icon button" id="add-anniversary"><i class="green add icon"></i></span>
 						<div class="two fields">
 							<div class="field">
 								<label for="related_to_contact">Person</label>
@@ -126,7 +133,23 @@
 	<% include ../../home/views/partials/scripts.ejs %>
 	<script src="/home/public/js/calendar.min.js"></script>
 	<script>
-		$('#select_title').dropdown();
+		var make_calendar = function(item){
+			$(item).calendar({
+				monthFirst: false,
+				type:'date',
+				formatter: {
+					date: function (date, settings) {
+						if (!date) return '';
+						var day = date.getDate();
+						var month = date.getMonth() + 1;
+						var year = date.getFullYear();
+						return year + '-' + month + '-' + day;
+					}
+				}
+			});
+		};
+
+		$('.select-title').dropdown();
 		$('#select_relation').dropdown();
 		$('#select_gender').dropdown();
 
@@ -139,6 +162,21 @@
 				url: '/api/contacts/list?contact_name={query}',
 			},
 			localSearch: false
+		});
+
+		make_calendar('.select-day');
+		
+		$('#add-anniversary').on('click', function(req, res){
+			var anni_num = 0;
+			$('#anniversaries-list .anniversary:first').clone().appendTo('#anniversaries-list');
+			$('#anniversaries-list .anniversary:last .select-title, #anniversaries-list .anniversary:last .select-day').val('');
+			$('#anniversaries-list .anniversary:last .select-title').dropdown();
+			make_calendar('#anniversaries-list .anniversary:last .select-day');
+			$('#anniversaries-list .anniversary').each(function(index){
+				$(this).find('[data-handle="anni-title"]').attr('name', "anniversaries[" + anni_num + "][title]");
+				$(this).find('[data-handle="anni-day"]').attr('name', "anniversaries[" + anni_num + "][day]");
+				anni_num++;
+			})
 		});
 
 		$('#update-contact').on('click', function(e){
@@ -154,20 +192,6 @@
 						window.location = "/contacts/list";
 				}
 			});
-		});
-
-		$('#select-day').calendar({
-			monthFirst: false,
-			type:'date',
-			formatter: {
-				date: function (date, settings) {
-					if (!date) return '';
-					var day = date.getDate();
-					var month = date.getMonth() + 1;
-					var year = date.getFullYear();
-					return year + '-' + month + '-' + day;
-				}
-			}
 		});
 	</script>
 </body>
