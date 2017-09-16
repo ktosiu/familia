@@ -13,6 +13,8 @@ module.exports = function(app){
 
 	app.route(domainRoot + '/houses/list')
 	.get(contactsController.listHousesUI);
+
+	app.route(domainRoot + '/houses/:house_id')
 	.get(contactsController.viewHouseUI);
 	
 	app.route(domainRoot + '/contacts/list') 

@@ -258,11 +258,13 @@ exports.listHousesUI = function(req, res){
 } 
 
 exports.viewHouseUI = function(req, res){
-	House.findOne({_id:req.house_id}, function(err, house){
-			if (err || house==null || house==undefined)
-				res.status(401).json(err);
-			else{
-				res.json(house);
-			}
+	House.findOne({_id:req.house_id})
+	.populate({ path: 'contacts', select: 'full_name avatar relation _id'})
+	.exec(function(err, house){
+		if (err || house==null || house==undefined)
+			res.status(401).json(err);
+		else{
+			res.render('contacts/views/view-house', {house:house});
+		}
 	});
 }
