@@ -15,6 +15,17 @@ exports.contactById = function(req, res, next, contact_id){
 	});
 }
 
+exports.houseById = function(req, res, next, house_id){
+	House.findOne({_id: house_id}, function(err, house){
+		if(err || house===null || house===undefined)
+			res.status(404).json({'msg':'Invalid House !'});
+		else{
+			req.house_id = house._id;
+			next();
+		}
+	});
+}
+
 exports.listContactUI = function(req, res){
 	Contact.find({})
 	.populate({ path: 'related_to_contact', select: 'full_name _id'})
