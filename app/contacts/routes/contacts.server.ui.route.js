@@ -29,4 +29,5 @@ module.exports = function(app){
 	.get(contactsController.home); // delete.ejs
 
 	app.param('contact_id', contactsController.contactById);
+	app.param('house_id', contactsController.houseById);
 }
