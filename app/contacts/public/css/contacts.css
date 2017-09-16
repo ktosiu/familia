@@ -7,3 +7,17 @@
 .capitalize{
 	text-transform: capitalize;
 }
+header.house-header{
+	background-color: #3b9;
+	background-image: url('/home/public/img/houses-cover.jpg');
+	-webkit-background-size: cover;
+	background-size: cover;
+	background-position: center center;
+	border-radius: 4px;
+}
+
+.house header.house-header h1{
+	padding: 100px 0px;
+	color: white;
+	text-shadow: 2px 2px 4px #000;
+}
