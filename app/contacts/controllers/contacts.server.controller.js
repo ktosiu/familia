@@ -234,3 +234,24 @@ exports.housesDashboardUI = function(req, res){
 exports.addHouseUI = function(req, res){
 	res.render('contacts/views/add-house');
 }
+
+exports.createHouseAPI = function(req, res){
+	console.log(req.body);
+	var house = new House(req.body);
+	house.save(function(err, house){
+		if(err)
+			res.status(500).json(err)
+		else
+			res.status(201).json({'msg':'House added !', house_id: house._id});
+	});
+}
+
+exports.viewHouseUI = function(req, res){
+	House.findOne({_id:req.house_id}, function(err, house){
+			if (err || house==null || house==undefined)
+				res.status(401).json(err);
+			else{
+				res.json(house);
+			}
+	});
+}
