@@ -5,7 +5,7 @@ var houseSchema = new Schema({
 	title: String,
 	place: String,
 	landmark: String,
-	latlong: [Number],
+	latlong: String,
 	head_contact: { type: Schema.ObjectId, ref: 'contact'},
 	contacts: [{ type: Schema.ObjectId, ref: 'contact'}],
 	phone: String
