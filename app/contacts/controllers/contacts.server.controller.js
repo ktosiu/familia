@@ -1,4 +1,5 @@
 var Contact = require('mongoose').model('contact');
+var House = require('mongoose').model('house');
 var contactValidation = require('../lib/contacts.validation.js');
 var moment = require('moment');
 var gm = require('gm').subClass({imageMagick: true});
