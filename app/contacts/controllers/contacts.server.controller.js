@@ -1,4 +1,5 @@
 var Contact = require('mongoose').model('contact');
+var House = require('mongoose').model('house');
 var contactValidation = require('../lib/contacts.validation.js');
 var moment = require('moment');
 var gm = require('gm').subClass({imageMagick: true});
@@ -10,6 +11,17 @@ exports.contactById = function(req, res, next, contact_id){
 			res.status(404).json({'msg':'Invalid Contact !'});
 		else{
 			req.contact_id = contact._id;
+			next();
+		}
+	});
+}
+
+exports.houseById = function(req, res, next, house_id){
+	House.findOne({_id: house_id}, function(err, house){
+		if(err || house===null || house===undefined)
+			res.status(404).json({'msg':'Invalid House !'});
+		else{
+			req.house_id = house._id;
 			next();
 		}
 	});
@@ -212,5 +224,35 @@ exports.removeContactAPI = function(req, res){
 					res.status(200).json("Contact Removed !")
 			});
 		}
+	});
+}
+
+exports.housesDashboardUI = function(req, res){
+	res.render('contacts/views/add-house');
+}
+
+
+exports.addHouseUI = function(req, res){
+	res.render('contacts/views/add-house');
+}
+
+exports.createHouseAPI = function(req, res){
+	console.log(req.body);
+	var house = new House(req.body);
+	house.save(function(err, house){
+		if(err)
+			res.status(500).json(err)
+		else
+			res.status(201).json({'msg':'House added !', house_id: house._id});
+	});
+}
+
+exports.viewHouseUI = function(req, res){
+	House.findOne({_id:req.house_id}, function(err, house){
+			if (err || house==null || house==undefined)
+				res.status(401).json(err);
+			else{
+				res.json(house);
+			}
 	});
 }

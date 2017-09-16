@@ -8,6 +8,9 @@ module.exports = function(app){
 	.get(contactsController.listContactAPI)
 	.post(upload.single('avatar'), contactsController.createContactAPI);
 
+	app.route(domainRoot + '/houses')
+	.post(contactsController.createHouseAPI);
+
 	app.route(domainRoot + '/contacts/list')
 	.get(contactsController.fetchContactAPI); // home.ejs
 

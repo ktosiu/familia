@@ -4,6 +4,15 @@ var domainRoot = '';
 module.exports = function(app){
 	app.route(domainRoot + '/contacts')
 	.get(contactsController.contactsDashboardUI);
+
+	app.route(domainRoot + '/houses')
+	.get(contactsController.housesDashboardUI);
+
+	app.route(domainRoot + '/houses/add')
+	.get(contactsController.addHouseUI);
+
+		app.route(domainRoot + '/houses/:house_id')
+	.get(contactsController.viewHouseUI);
 	
 	app.route(domainRoot + '/contacts/list') 
 	.get(contactsController.listContactUI);
@@ -23,4 +32,5 @@ module.exports = function(app){
 	.get(contactsController.home); // delete.ejs
 
 	app.param('contact_id', contactsController.contactById);
+	app.param('house_id', contactsController.houseById);
 }
