@@ -247,6 +247,16 @@ exports.createHouseAPI = function(req, res){
 	});
 }
 
+exports.listHousesUI = function(req, res){
+	House.find({}, function(err, house_list){
+		if (err || house_list==null || house_list==undefined)
+			res.status(401).json(err);
+		else{
+			res.render('contacts/views/list-houses', {house_list:house_list});
+		}
+	});
+} 
+
 exports.viewHouseUI = function(req, res){
 	House.findOne({_id:req.house_id}, function(err, house){
 			if (err || house==null || house==undefined)
