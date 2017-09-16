@@ -14,7 +14,7 @@
 			<div class="eight wide column">
 				<div class="ui segment">
 					<h1 class="ui header">Add House</h1>
-					<form action="/api/houses" method="POST" enctype="multipart/form-data" class="ui form">
+					<form action="/api/houses" method="POST" class="ui form" id="house-form">
 						<div class="two fields">
 							<div class="field">
 								<label for="title">Title</label>
@@ -83,6 +83,19 @@
 			localSearch: false
 		});
 
+		$('#add-house').on('click', function(e){
+			e.preventDefault();
+			$.ajax({
+				url: '/api/houses',
+				type: 'POST',
+				data: $('#house-form').serialize(),
+				success: function(data, status, xhr){
+					if(xhr.status == 201){
+						window.location = "/houses/" + data.house_id;
+					}
+				}
+			})
+		});
 	</script>
 </body>
 </html>
