@@ -20,19 +20,13 @@
 				<h4 class="ui header">Family Members</h4>
 			</div>
 			<div class="ui segment">
-				<div class="four ui cards">
+				<div class="ui six doubling cards">
 					<% if(house.contacts.length){ %>
 					<% house.contacts.forEach(function(member){ %>
-					<div class="ui card">
-						<div class="image">
+					<div class="card">
+						<a href="/contacts/<%= member._id %>" class="image" data-tooltip="<%= member.full_name %>" data-inverted="">
 							<img src="/contacts/public/uploads/avatars/<% if(member.avatar){ %><%= member.avatar %><% }else{ %>default.jpg<% } %>">
-						</div>
-						<div class="content">
-							<a class="header" href="/contacts/<%= member._id %>"><%= member.full_name %></a>
-							<div class="meta">
-								<span class="capitalize"><%= member.relation %></span>
-							</div>
-						</div>
+						</a>
 					</div>
 					<% });}  %>
 				</div>
