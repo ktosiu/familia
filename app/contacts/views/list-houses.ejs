@@ -26,7 +26,7 @@
 			<tbody>
 				<% house_list.forEach(function(house){ %>
 				<tr>
-					<td><%= house.title %></td>
+					<td><a href="/houses/<%= house._id %>"><%= house.title %></a></td>
 					<td><%= house.place %></td>
 					<td><%= house.number %></td>
 					<td><%= house.latlong %></td>
