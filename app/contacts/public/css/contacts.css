@@ -21,3 +21,7 @@ header.house-header{
 	color: white;
 	text-shadow: 2px 2px 4px #000;
 }
+
+#contacts-statistics .card .image{
+	padding: 10px;
+}
