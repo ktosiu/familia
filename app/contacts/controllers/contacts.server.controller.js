@@ -271,3 +271,17 @@ exports.viewHouseUI = function(req, res){
 		}
 	});
 }
+
+exports.viewStatisticsUI = function(req, res){
+	Contact.aggregate([
+		{$project: {
+			male: {$cond: [{$eq: ["$gender", "male"]}, 1, 0]},
+			female: {$cond: [{$eq: ["$gender", "female"]}, 1, 0]},
+		}},
+		{$group: { _id: null, male: {$sum: "$male"},
+		female: {$sum: "$female"},
+		total: {$sum: 1},
+	}}], function(err, result){
+		res.json(result);
+	});
+}

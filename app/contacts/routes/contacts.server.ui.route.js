@@ -2,6 +2,9 @@ var contactsController = require('../controllers/contacts.server.controller.js')
 var domainRoot = '';
 
 module.exports = function(app){
+	app.route('/dashboard')
+	.get(contactsController.viewStatisticsUI);
+	
 	app.route(domainRoot + '/contacts')
 	.get(contactsController.contactsDashboardUI);
 
