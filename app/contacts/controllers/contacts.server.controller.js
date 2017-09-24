@@ -248,7 +248,9 @@ exports.createHouseAPI = function(req, res){
 }
 
 exports.listHousesUI = function(req, res){
-	House.find({}, function(err, house_list){
+	House.find({})
+	.populate({ path: 'head_contact', select: 'full_name avatar _id'}) 
+	.exec(function(err, house_list){
 		if (err || house_list==null || house_list==undefined)
 			res.status(401).json(err);
 		else{
@@ -260,6 +262,7 @@ exports.listHousesUI = function(req, res){
 exports.viewHouseUI = function(req, res){
 	House.findOne({_id:req.house_id})
 	.populate({ path: 'contacts', select: 'full_name avatar relation _id'})
+	.populate({ path: 'head_contact', select: 'full_name avatar _id'})
 	.exec(function(err, house){
 		if (err || house==null || house==undefined)
 			res.status(401).json(err);

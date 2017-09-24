@@ -13,7 +13,7 @@
 	<% if(house){ %>
 	<div class="ui text container house">
 		<header class="house-header">
-			<h1 class="ui center aligned header"><%= house.title %></h1>
+			<h1 class="ui center aligned header"><% if(house.title != ""){ %><%= house.title %><% }else{ %><%= house.head_contact.full_name %>'s House <% } %></h1>
 		</header>
 		<div class="ui segments">
 			<div class="ui segment">

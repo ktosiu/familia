@@ -26,7 +26,7 @@
 			<tbody>
 				<% house_list.forEach(function(house){ %>
 				<tr>
-					<td><a href="/houses/<%= house._id %>"><%= house.title %></a></td>
+					<td><a href="/houses/<%= house._id %>"><% if(house.title != ""){ %><%= house.title %><% }else{ %><%= house.head_contact.full_name %>'s House <% } %></a></td>
 					<td><%= house.place %></td>
 					<td><%= house.number %></td>
 					<td><%= house.latlong %></td>
