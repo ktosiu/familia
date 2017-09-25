@@ -29,7 +29,7 @@
 					<td><a href="/houses/<%= house._id %>"><% if(house.title != ""){ %><%= house.title %><% }else{ %><%= house.head_contact.full_name %>'s House <% } %></a></td>
 					<td><%= house.place %></td>
 					<td><%= house.number %></td>
-					<td><%= house.latlong %></td>
+					<td><a href="<%= house.latlog %>"><i class="ui red point icon"></i></a></td>
 					<td><%= house.contacts.length %></td>
 				</tr>
 				<% }); %>
