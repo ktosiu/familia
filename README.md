@@ -2,14 +2,14 @@
 Contact details, house details, relations and events manager for family.
 
 ### Home Page
-![Home page](familia-homepage.jpg)
+![Home page](https://github.com/shajanjp/shajanjp.github.io/raw/master/uploads/familia-homepage.jpg)
 ### Contacts List
-![Contacts list](familia-contacts-list.jpg)
+![Contacts list](https://github.com/shajanjp/shajanjp.github.io/raw/master/uploads/familia-contacts-list.jpg)
 ### Contact Details
-![Contact details](familia-contact-details.jpg)
+![Contact details](https://github.com/shajanjp/shajanjp.github.io/raw/master/uploads/familia-contact-details.jpg)
 ### House Details
-![House details](familia-house-details.jpg)
+![House details](https://github.com/shajanjp/shajanjp.github.io/raw/master/uploads/familia-house-details.jpg)
 ### Add House
-![Add house](familia-add-house.jpg)
+![Add house](https://github.com/shajanjp/shajanjp.github.io/raw/master/uploads/familia-add-house.jpg)
 ### Add Person
-![Add Person](familia-add-person.jpg)
+![Add Person](https://github.com/shajanjp/shajanjp.github.io/raw/master/uploads/familia-add-person.jpg)
