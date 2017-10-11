@@ -23,3 +23,20 @@ var reverse_relarion = function(relation){
 			break;
 	}
 }
+
+
+$('.remove-house').on('click', function(e){
+	e.preventDefault();
+	let house_id = $(this).data('house-id');
+	alert(house_id);
+	$.ajax({
+		type: "DELETE",
+		url: '/api/houses/' + house_id,
+		contentType: false,
+		success: function(data, status, xhr){
+			if(xhr.status == 200){
+				window.location = "/houses/list";
+			}
+		}
+	});
+});
