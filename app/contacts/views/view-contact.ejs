@@ -107,7 +107,7 @@
 		<br>
 		<div>
 			<a href="/contacts/<%= contact._id %>/edit" class="ui basic primary button">Update</a>
-			<a href="/contacts/<%= contact._id %>" class="ui basic red button">Delete</a>
+			<a data-contact-id="<%= contact._id %>" class="ui basic red button remove-contact">Delete</a>
 		</div>
 	</div>
 	<% } %>
