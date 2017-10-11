@@ -35,7 +35,7 @@
 		<br>
 		<div>
 			<a href="/houses/<%= house._id %>/edit" class="ui basic primary button">Update</a>
-			<a href="/houses/<%= house._id %>" class="ui basic red button">Delete</a>
+			<a href="/houses/<%= house._id %>" class="ui basic red button remove-house" data-house-id="<%= house._id %>">Delete</a>
 		</div>
 	</div>
 	<% } %>
