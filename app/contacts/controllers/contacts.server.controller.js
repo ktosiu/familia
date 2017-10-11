@@ -216,7 +216,6 @@ exports.removeContactAPI = function(req, res){
 		if (err)
 			res.json(err);
 		else {
-			console.log("removing...");
 			Contact.update({ related_to_contact: req.contact_id }, {$unset: {related_to_contact: 1,relation: 1}}, { safe:true }, function(err, doc){
 				if (err) 
 					res.status(500).json(err);
