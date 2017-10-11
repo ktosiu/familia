@@ -40,3 +40,19 @@ $('.remove-house').on('click', function(e){
 		}
 	});
 });
+
+$('.remove-contact').on('click', function(e){
+	e.preventDefault();
+	let contact_id = $(this).data('contact-id');
+	alert(contact_id);
+	$.ajax({
+		type: "DELETE",
+		url: '/api/contacts/' + contact_id,
+		contentType: false,
+		success: function(data, status, xhr){
+			if(xhr.status == 200){
+				window.location = "/contacts/list";
+			}
+		}
+	});
+});
