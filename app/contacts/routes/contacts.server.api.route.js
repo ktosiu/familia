@@ -11,6 +11,9 @@ module.exports = function(app){
 	app.route(domainRoot + '/houses')
 	.post(contactsController.createHouseAPI);
 
+	app.route(domainRoot + '/houses/:house_id')
+	.delete(contactsController.removeHouseAPI);
+	
 	app.route(domainRoot + '/contacts/list')
 	.get(contactsController.fetchContactAPI); // home.ejs
 

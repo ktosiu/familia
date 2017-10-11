@@ -285,3 +285,13 @@ exports.viewStatisticsUI = function(req, res){
 		res.json(result);
 	});
 }
+
+exports.removeHouseAPI = function(req, res){
+	House.remove({_id:req.house_id}, function(err){
+		if (err)
+			res.json(err);
+		else{
+			res.json({'msg': 'House Removed !', 'success': true});
+		}
+	});
+}
