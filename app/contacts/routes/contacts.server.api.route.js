@@ -15,7 +15,7 @@ module.exports = function(app){
 	.delete(contactsController.removeHouseAPI);
 	
 	app.route(domainRoot + '/contacts/list')
-	.get(contactsController.fetchContactAPI); // home.ejs
+	.get(contactsController.fetchContactAPI);
 
 	app.route(domainRoot + '/contacts/:contact_id')
 	.get(contactsController.viewContactAPI)
@@ -23,4 +23,6 @@ module.exports = function(app){
 	.delete(contactsController.removeContactAPI);
 
 	app.param('contact_id', contactsController.contactById);
+	app.param('house_id', contactsController.houseById);
+
 }
